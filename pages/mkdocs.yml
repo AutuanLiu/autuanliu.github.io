@@ -27,6 +27,7 @@ pages:
     - 机器学习:
         - 最小二乘回归(LSR): 机器学习/LinearSquaresRegression.md
         - 线性判别分析(LDA): 机器学习/LinearDiscriminant.md
+        - 广义线性模型(GLM): 机器学习/GeneralizedLinearModels.md
     - 深度学习:
         - CNN: 深度学习/CNN.md
         - RNN: 深度学习/RNN.md
