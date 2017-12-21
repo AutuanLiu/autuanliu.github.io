@@ -137,3 +137,8 @@ L1正则|liblinear or saga
 wclf = svm.SVC(kernel='linear', class_weight={1: 10})
 ```
 
+支持向量分类的方法可以被扩展用作解决回归问题. 这个方法被称作支持向量回归
+
+支持向量分类生成的模型只依赖于训练集的子集,因为构建模型的 cost function 不在乎边缘之外的训练点. 类似的, 支持向量回归生成的模型只依赖于训练集的子集, 因为构建模型的 cost function 忽略任何接近于模型预测的训练数据
+
+SVM的核心是一个二次规划问题(Quadratic Programming, QP)，是将支持向量和训练数据的其余部分分离开来
