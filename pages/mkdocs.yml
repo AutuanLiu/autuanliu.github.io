@@ -11,21 +11,14 @@ remote_branch: master
 
 theme_dir: flatly/
 
-python:
-   version: 3 # for unicode
-   setup_py_install: true
+markdown_extensions:
+   # other extensions ...
+   - pymdownx.arithmatex
 
-#the third-party extenison mdx_math.py comes with a setup.py script
-# Thank you Dmitry Shachnev (https://github.com/mitya57/python-markdown-math) 
-markdown_extensions: 
-    - mdx_math:
-        enable_dollar_delimiter: True #for use of inline $..$
-    - fenced_code
-    - codehilite
-    - footnotes
-
-# Required to load the MathJax javascript for the mdx_math.py
-extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML']
+extra_javascript:
+  # other extra java script
+  - mathjax-config.js
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 pages:
     - Home: index.md

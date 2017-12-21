@@ -1,0 +1,64 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Welcome to Amber Cottage",
+            "title": "Home"
+        },
+        {
+            "location": "/#welcome-to-amber-cottage",
+            "text": "",
+            "title": "Welcome to Amber Cottage"
+        },
+        {
+            "location": "/\u6570\u636e\u79d1\u5b66/ExploratoryDataAnalysis/",
+            "text": "\u63a2\u7d22\u6027\u6570\u636e\u5206\u6790\n\n\n\n\n\n\\begin{align}\n\\label{eq:pythagoras}\nx^2 + y^2 = z^2\n\\end{align} \n\n\n\n\n\\begin{align}\n\\label{eq:pythagoras}\nx^2 + y^2 = z^2\n\\end{align} \n\n\n\n\n\nAs we can see from \n\\eqref{eq:pythagoras}\n\\eqref{eq:pythagoras}\n all is well in Denmark.",
+            "title": "\u63a2\u7d22\u6027\u6570\u636e\u5206\u6790"
+        },
+        {
+            "location": "/\u6570\u636e\u79d1\u5b66/ExploratoryDataAnalysis/#_1",
+            "text": "\\begin{align}\n\\label{eq:pythagoras}\nx^2 + y^2 = z^2\n\\end{align}   \n\\begin{align}\n\\label{eq:pythagoras}\nx^2 + y^2 = z^2\n\\end{align}    As we can see from  \\eqref{eq:pythagoras} \\eqref{eq:pythagoras}  all is well in Denmark.",
+            "title": "\u63a2\u7d22\u6027\u6570\u636e\u5206\u6790"
+        },
+        {
+            "location": "/\u673a\u5668\u5b66\u4e60/LinearSquaresRegression/",
+            "text": "",
+            "title": "\u6700\u5c0f\u4e8c\u4e58\u56de\u5f52(LSR)"
+        },
+        {
+            "location": "/\u673a\u5668\u5b66\u4e60/LinearDiscriminant/",
+            "text": "",
+            "title": "\u7ebf\u6027\u5224\u522b\u5206\u6790(LDA)"
+        },
+        {
+            "location": "/\u6df1\u5ea6\u5b66\u4e60/CNN/",
+            "text": "",
+            "title": "CNN"
+        },
+        {
+            "location": "/\u6df1\u5ea6\u5b66\u4e60/RNN/",
+            "text": "",
+            "title": "RNN"
+        },
+        {
+            "location": "/Blog/Bayesian/",
+            "text": "\u8d1d\u53f6\u65af\u601d\u60f3\n\n\n\n\nf(x)=\\sin(x)\n\n\nf(x)=\\sin(x)",
+            "title": "\u8d1d\u53f6\u65af\u601d\u60f3"
+        },
+        {
+            "location": "/Blog/Bayesian/#_1",
+            "text": "f(x)=\\sin(x)  f(x)=\\sin(x)",
+            "title": "\u8d1d\u53f6\u65af\u601d\u60f3"
+        },
+        {
+            "location": "/about/aboutme/",
+            "text": "",
+            "title": "AboutMe"
+        },
+        {
+            "location": "/about/license/",
+            "text": "",
+            "title": "License"
+        }
+    ]
+}
