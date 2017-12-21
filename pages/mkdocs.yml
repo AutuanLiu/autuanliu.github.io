@@ -24,6 +24,7 @@ pages:
     - Home: index.md
     - 数据科学:
         - 探索性数据分析: 数据科学/ExploratoryDataAnalysis.md
+        - 数据可视化分析: 数据科学/visualization.md
     - 机器学习:
         - 最小二乘回归(LSR): 机器学习/LinearSquaresRegression.md
         - 线性判别分析(LDA): 机器学习/LinearDiscriminant.md
