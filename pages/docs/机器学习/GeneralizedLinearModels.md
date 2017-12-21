@@ -111,7 +111,7 @@ L1正则|liblinear or saga
 ## 1.3 核岭回归
 
 * Kernel ridge regression (KRR) (内核岭回归由 使用内核方法的 (岭回归)(使用 l2 正则化的最小二乘法)所组成。因此，它所学习到的在空间中不同的线性函数是由不同的内核和数据所导致的。对于非线性的内核，它与原始空间中的非线性函数相对应
-* 由 KernelRidge 学习的模型的形式与支持向量回归( SVR ) 是一样的。但是他们使用不同的损失函数：内核岭回归(KRR)使用 squared error loss (平方误差损失函数)而 support vector regression (支持向量回归)(SVR)使用 $\epsilon$ -insensitive loss ，两者都使用 l2 regularization (l2 正则化)。与 SVR 相反，拟合 KernelRidge 可以以 closed-form (封闭形式)完成，对于中型数据集通常更快。另一方面，学习的模型是非稀疏的，因此比 SVR 慢， 在预测时间，SVR 学习了 $\epsilon > 0 $ 的稀疏模型。
+* 由 KernelRidge 学习的模型的形式与支持向量回归( SVR ) 是一样的。但是他们使用不同的损失函数：内核岭回归(KRR)使用 squared error loss (平方误差损失函数)而 support vector regression (支持向量回归)(SVR)使用 $\epsilon$ -insensitive loss ，两者都使用 l2 regularization (l2 正则化)。与 SVR 相反，拟合 KernelRidge 可以以 closed-form (封闭形式)完成，对于中型数据集通常更快。另一方面，学习的模型是非稀疏的，因此比 SVR 慢， 在预测时间，SVR 学习了 $\epsilon>0$ 的稀疏模型。
 * 它们的 learned functions (学习函数)非常相似;但是，拟合 KernelRidge 大约比拟合 SVR 快七倍(都使用 grid-search ( 网格搜索 ) )。然而，由于 SVR 只学习了一个稀疏模型，所以 SVR 预测 10 万个目标值比使用 KernelRidge 快三倍以上。SVR 只使用了百分之三十的数据点做为支撑向量
 * 对于中型训练集(小于 1000 个样本)，拟合 KernelRidge 比 SVR 快; 然而，对于更大的训练集 SVR 通常更好。 关于预测时间，由于学习的稀疏解，SVR 对于所有不同大小的训练集都比 KernelRidge 快
 * **稀疏解**是说只使用一部分特征作为关键训练特征
