@@ -1,0 +1,50 @@
+site_name: Amber Cottage
+site_url: https://autuanliu.github.io
+site_description: Amber Cottage, knowledge worth spreading.
+site_author: AutuanLiu
+
+repo_url: https://github.com/https://autuanliu.github.io/
+edit_uri: ""
+
+remote_name: origin
+remote_branch: master
+
+theme_dir: flatly/
+
+python:
+   version: 3 # for unicode
+   setup_py_install: true
+
+#the third-party extenison mdx_math.py comes with a setup.py script
+# Thank you Dmitry Shachnev (https://github.com/mitya57/python-markdown-math) 
+markdown_extensions: 
+    - mdx_math:
+        enable_dollar_delimiter: True #for use of inline $..$
+    - fenced_code
+    - codehilite
+    - footnotes
+
+# Required to load the MathJax javascript for the mdx_math.py
+extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML']
+
+pages:
+    - Home: index.md
+    - 数据科学:
+        - 探索性数据分析: 数据科学/ExploratoryDataAnalysis.md
+    - 机器学习:
+        - 最小二乘回归(LSR): 机器学习/LinearSquaresRegression.md
+        - 线性判别分析(LDA): 机器学习/LinearDiscriminant.md
+    - 深度学习:
+        - CNN: 深度学习/CNN.md
+        - RNN: 深度学习/RNN.md
+    - Blog:
+        - 贝叶斯思想: Blog/Bayesian.md
+    - About:
+        - AboutMe: about/aboutme.md
+        - License: about/license.md
+
+copyright: Copyright &copy; 2017 <a href="https://autuanliu.github.io">AutuanLiu</a>
+google_analytics: ['UA-27795084-5', 'mkdocs.org']
+
+plugins:
+    - search
