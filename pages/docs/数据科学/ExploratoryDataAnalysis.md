@@ -7,4 +7,9 @@ x^2 + y^2 = z^2
 \end{align} 
 $$
 
-As we can see from $\eqref{eq:pythagoras}$ all is well in Denmark. 
+As we can see from  $\eqref{eq:pythagoras}$  all is well in Denmark. 
+
+$$
+\label{eq:pythagoras}
+y = \sin(x) \sum_i^{x^2}
+$$
