@@ -1,7 +1,6 @@
 # Amber Cottage
 
 欢迎来到我的小屋 ———— Amber Cottage
-------
 
 ## 简介
 
