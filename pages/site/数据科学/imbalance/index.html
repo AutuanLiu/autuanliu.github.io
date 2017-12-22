@@ -210,22 +210,30 @@ date: 2017/12/01
 </ul>
 <h2 id="fit-and-tune-models">Fit and tune models</h2>
 <ul>
-<li>
-<p>大致过程</p>
-<p><code>For each algorithm (i.e. regularized regression, random forest, etc.):
-    For each set of hyperparameter values to try:
-        Perform cross-validation using the training set.
-        Calculate cross-validated score.</code></p>
-<p>At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.</p>
-<p><code>For each algorithm:
-    Keep the set of hyperparameter values with best cross-validated score.
-    Re-train the algorithm on the entire training set (without cross-validation).</code></p>
-<pre><code>然后，将训练好的对应多种算法的多个模型在 **测试集**上进行测试，然后选出最好的那个模型
+<li>大致过程</li>
+</ul>
+<blockquote>
+<p>For each algorithm (i.e. regularized regression, random forest, etc.):</p>
+<blockquote>
+<p>For each set of hyperparameter values to try:</p>
+<blockquote>
+<pre><code>   Perform cross-validation using the training set.
+   Calculate cross-validated score.
 </code></pre>
-</li>
-<li>
-<p>评估好坏</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.</p>
+<blockquote>
+<p>For each algorithm:</p>
+<blockquote>
+<p>Keep the set of hyperparameter values with best cross-validated score.
+   Re-train the algorithm on the entire training set (without cross-validation).</p>
+</blockquote>
+</blockquote>
+<p>然后，将训练好的对应多种算法的多个模型在 <strong>测试集</strong>上进行测试，然后选出最好的那个模型</p>
 <ul>
+<li>评估好坏<ul>
 <li>For regression tasks, we recommend Mean Squared Error (MSE) or Mean Absolute Error (MAE). (Lower values are better)</li>
 <li>For classification tasks, we recommend Area Under ROC Curve (AUROC). (Higher values are better)</li>
 </ul>

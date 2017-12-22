@@ -25,23 +25,20 @@ date: 2017/12/01
 ## Fit and tune models
 
 * 大致过程
-    
-    ```
-    For each algorithm (i.e. regularized regression, random forest, etc.):
-        For each set of hyperparameter values to try:
-            Perform cross-validation using the training set.
-            Calculate cross-validated score.
-    ```
 
-    At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.
+> For each algorithm (i.e. regularized regression, random forest, etc.):
+>>    For each set of hyperparameter values to try:
+>>>        Perform cross-validation using the training set.
+>>>        Calculate cross-validated score.
 
-    ```
-    For each algorithm:
-        Keep the set of hyperparameter values with best cross-validated score.
-        Re-train the algorithm on the entire training set (without cross-validation).
-    ```
 
-        然后，将训练好的对应多种算法的多个模型在 **测试集**上进行测试，然后选出最好的那个模型
+At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.
+
+> For each algorithm:
+>>    Keep the set of hyperparameter values with best cross-validated score.
+>>    Re-train the algorithm on the entire training set (without cross-validation).
+
+然后，将训练好的对应多种算法的多个模型在 **测试集**上进行测试，然后选出最好的那个模型
 
 * 评估好坏
     * For regression tasks, we recommend Mean Squared Error (MSE) or Mean Absolute Error (MAE). (Lower values are better)
