@@ -144,11 +144,16 @@ wclf = svm.SVC(kernel='linear', class_weight={1: 10})
 
 * 惩罚系数C的设置:在合理的情况下, C 的默认选择为 1. 如果您有很多混杂的观察数据, 您应该要去调小它. C 越小, 就能更好地去正规化估计
 * 常用核函数
-  * 线性 $$k(x_i, x_j) = x_i^T x_j$$
-  * 多项式 $$k(x_i, x_j) = (x_i^T x_j)^d$$
-  * 高斯核rbf $$k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})$$
-  * 拉普拉斯 $$k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})$$
-  * sigmoid $$k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)$$
+  * 线性 
+  $$k(x_i, x_j) = x_i^T x_j$$
+  * 多项式 
+  $$k(x_i, x_j) = (x_i^T x_j)^d$$
+  * 高斯核rbf 
+  $$k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})$$
+  * 拉普拉斯 
+  $$k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})$$
+  * sigmoid 
+  $$k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)$$
 * 核函数通过创建实例时进行指定 svm.SVC(kernel='linear')
 
 * 自定义核函数

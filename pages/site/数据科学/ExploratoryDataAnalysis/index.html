@@ -68,19 +68,23 @@
 <li >
     <a href="../visualization/">数据可视化分析</a>
 </li>
+                            
+<li >
+    <a href="../imbalance/">处理类别不均衡</a>
+</li>
+                            
+<li >
+    <a href="../path/">数据科学基本路径</a>
+</li>
+                            
+<li >
+    <a href="../docker/">Docker基础</a>
+</li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">机器学习 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            
-<li >
-    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/LinearSquaresRegression/">最小二乘回归(LSR)</a>
-</li>
-                            
-<li >
-    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/LinearDiscriminant/">线性判别分析(LDA)</a>
-</li>
                             
 <li >
     <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/GeneralizedLinearModels/">广义线性模型(GLM)</a>
@@ -92,6 +96,14 @@
                             
 <li >
     <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/model/">模型选择</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/sklearnStruct/">SkLearn的结构</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/content/">学习资料总结</a>
 </li>
                         </ul>
                     </li>
@@ -160,35 +172,255 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#_1">探索性数据分析</a></li>
+            <li><a href="#_2">要点</a></li>
+            <li><a href="#_4">数值特征的分布</a></li>
+            <li><a href="#_5">分类特征的分布</a></li>
+            <li><a href="#segmentation">segmentation 分割</a></li>
+            <li><a href="#_6">相关性分析</a></li>
+            <li><a href="#_7">数据清洗</a></li>
+            <li><a href="#_8">特征工程</a></li>
+            <li><a href="#_13">算法选择</a></li>
+            <li><a href="#_16">集成学习</a></li>
+            <li><a href="#_18">参看文献</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <h1 id="_1">探索性数据分析</h1>
-<div>
-<div class="MathJax_Preview">
-\begin{align}
-\label{eq:pythagoras}
-x^2 + y^2 = z^2
-\end{align} 
-</div>
-<script type="math/tex; mode=display">
-\begin{align}
-\label{eq:pythagoras}
-x^2 + y^2 = z^2
-\end{align} 
-</script>
-</div>
-<p>As we can see from  <span><span class="MathJax_Preview">\cos(x)</span><script type="math/tex">\cos(x)</script></span>  all is well in Denmark. </p>
-<div>
-<div class="MathJax_Preview">
-y = \sin(x) \sum_i^{x^2}
-</div>
-<script type="math/tex; mode=display">
-y = \sin(x) \sum_i^{x^2}
-</script>
-</div>
-<p>后续更新</p></div>
+<pre><code>author: autuanliu
+email: autuanliu@163.com
+date: 2017/11/30
+</code></pre>
+
+<h2 id="_2">要点</h2>
+<h3 id="_3">整体观察</h3>
+<ul>
+<li>How many observations do I have?</li>
+<li>How many features?</li>
+<li>What are the data types of my features? Are they numeric? Categorical?</li>
+<li>Do I have a target variable?</li>
+</ul>
+<h2 id="_4">数值特征的分布</h2>
+<ul>
+<li>histogram 往往是最有效的</li>
+<li>潜在的<strong>离群值</strong>是没有意义的</li>
+<li>边界没有意义</li>
+<li>潜在的测量错误</li>
+<li>记下想要做的修复</li>
+</ul>
+<h2 id="_5">分类特征的分布</h2>
+<ul>
+<li>bar plot 是有效的</li>
+<li>可以清楚看到<strong>稀疏类别</strong></li>
+<li>这里的<strong>稀疏类别</strong> 是关键，它少则不影响我们的模型，重则导致过拟合，这个一定要记下来（重新组合或者重新分配）</li>
+</ul>
+<h2 id="segmentation">segmentation 分割</h2>
+<p>segmentation 是观察<strong>分类特征</strong> 与 <strong>数值特征</strong> 的最有效的方式</p>
+<ul>
+<li>Box plot 是合适的</li>
+<li>这里的分析对 <strong>评估模型的泛化能力</strong>很重要</li>
+</ul>
+<h2 id="_6">相关性分析</h2>
+<ul>
+<li>相关性分析 可以很容易的看到两个数值特征之间的关系</li>
+<li>相关性 <strong>heatmaps</strong> 可以做到这一点（所有的数值都要放大 100 倍）</li>
+<li>关键要分析，哪一个特征和target有很强烈的相关关系</li>
+<li>是否有两个特征存在着意外的或者强烈的相关关系</li>
+</ul>
+<h2 id="_7">数据清洗</h2>
+<ul>
+<li>Better data beats fancier algorithms</li>
+<li>在这块儿花费更多时间是合理的</li>
+<li>
+<p>不同类型的数据需要不同类型的清洗方法</p>
+</li>
+<li>
+<p>删除重复的或者无关的数据</p>
+<ol>
+<li>重复数据：<ol>
+<li>合并来自多个地方的数据集</li>
+<li>从客户或者其他地方接受的数据</li>
+<li>拼凑的数据</li>
+</ol>
+</li>
+<li>无关数据：<ol>
+<li>探索性分析的内容</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>结构错误<ol>
+<li>数据测量，数据传输中出现的错误</li>
+<li>拼写错误或者不一致的大小写</li>
+<li>这可以从<strong>分类数据的条形图</strong>中很容易看出来</li>
+</ol>
+</li>
+<li>标记错误<ol>
+<li>如 IT 和 Information Technology 应该是一个意思</li>
+</ol>
+</li>
+<li>离群值<ol>
+<li>线性回归模型对离群值很敏感，而决策树相对好一点</li>
+<li>如果有<strong>合理的理由</strong>去除异常值，将是非常好的</li>
+<li>不能因为是<strong>离群值</strong>就盲目的删除，或许，它可以提供很多有用的信息</li>
+<li>删除数据必须要有理由，例如，<strong>非真实数据的可能性</strong></li>
+</ol>
+</li>
+<li>缺失值<ol>
+<li><strong>不能简单地忽略数据集中的缺失值</strong></li>
+<li>常见做法（丢弃或者插值）：<strong>事实上这是很不明智的</strong></li>
+<li>丢失缺失值比插值有时候更有效</li>
+<li>尽可能的告诉算法：缺失了数据，因为数据缺失本身就是一种信息</li>
+</ol>
+</li>
+<li>缺失分类数据<ol>
+<li>直接标记为“缺失”，即新添加一个类别</li>
+<li>同时也达到了没有缺失值的要求</li>
+</ol>
+</li>
+<li>缺失数值数据<ol>
+<li>标记并且填充值</li>
+<li>将观察结果标记为缺失的指示变量</li>
+<li>用 0 填充原来的缺失值（满足没有缺失值的要求）</li>
+<li>这样的标记和填充手法可以让算法估计缺失的最佳常量，而不仅仅是使用平均值进行填充</li>
+<li><strong>直接丢弃或者插值</strong>都是次优的方案（缺失同样是信息，所以最好的方法是使用标记的方法，并让算法自己去给出缺失值）</li>
+</ol>
+</li>
+</ul>
+<h2 id="_8">特征工程</h2>
+<p>特征工程是从已知的数据中<strong>创建新的特征</strong>作为输入</p>
+<ol>
+<li>数据清洗是一个 减 的过程而特征工程是一个 加 的过程</li>
+</ol>
+<h3 id="_9">交互项</h3>
+<ol>
+<li>是否可以创建一个<strong>具有相互作用的特征</strong>，他们是两个或者多个特征的组合（即是一个 <strong>交互项</strong>，可以是两个变量的 乘积，和或者差）</li>
+<li>应该询问自己“我可以把这两个变量组合起来以期望获得更好的结果吗？”</li>
+<li>例如，学校数量和学校质量两个变量（如果我们可以利用这两个变量做一个评分，那么结果是否会更加有效呢？）</li>
+</ol>
+<h3 id="_10">稀疏类别</h3>
+<ol>
+<li>每个类别至少有 50 个数据，当然这也取决于数据集的大小和其它特征数量</li>
+<li>将<strong>相似的类别归为一个类</strong></li>
+<li>将<strong>其它的数据量比较少的类别归属为一个 other 类</strong></li>
+<li>++<strong>这里的 missing 是一个 单独的类（分类数据）</strong>++</li>
+</ol>
+<h3 id="_11">虚拟变量</h3>
+<ol>
+<li>很多机器学习算法 <strong>不能直接处理分类数据，尤其是文本值</strong>， ++所以，我们需要对分类特征创建 虚拟变量++</li>
+<li>虚拟变量（0,1）等，每个值代表单一的 分类变量值</li>
+<li>尽可能多的引入 指示变量，这将会简化难度（分类变量以有缺失值的情况下）</li>
+</ol>
+<h3 id="_12">删除没有使用或者 冗余的 特征</h3>
+<ol>
+<li>未使用的特征<ol>
+<li>ID 列</li>
+<li>与预测无关</li>
+<li>其它文本信息</li>
+</ol>
+</li>
+<li>冗余特征<ol>
+<li>可以有其它的特征代替 </li>
+</ol>
+</li>
+</ol>
+<h2 id="_13">算法选择</h2>
+<ul>
+<li>大多数情况下，我们可以直接跳过 线性模型（不可以表达非线性关系；对离群值敏感；没有学到底层模型指示学到了训练集的噪声）</li>
+<li>正则弧是一种<strong>通过人为惩罚模型系数</strong>来防止过度拟合<ul>
+<li>可以防止系数过大</li>
+<li>也可以完全移除系数（正则项为0）</li>
+<li>惩罚的强度是可以 调整的</li>
+</ul>
+</li>
+</ul>
+<h3 id="_14">正则化回归</h3>
+<ol>
+<li>Lasso 回归<ol>
+<li>惩罚系数的 绝对大小</li>
+<li>可能导致系数为 0</li>
+<li>具有<strong>自动特征选择</strong>的功能</li>
+<li>惩罚强度应该是可调节的</li>
+<li>更强的惩罚必然导致大量系数为 0</li>
+</ol>
+</li>
+<li>Ridgo 回归<ol>
+<li>
+<ol>
+<li>惩罚系数的 平方大小</li>
+</ol>
+</li>
+<li>使系数变小，但不会为 0</li>
+<li>岭回归 具有使 <strong>特征收缩</strong>的功能</li>
+</ol>
+</li>
+<li>Elastic-Net<ol>
+<li>Lasso 和 Ridgo 的一种折中 </li>
+<li>惩罚系数的 绝对大小和平方大小 的组合 mix</li>
+<li>两种惩罚之间的系数 是可以调节的</li>
+<li>总强度也是可以调节的</li>
+</ol>
+</li>
+</ol>
+<h3 id="_15">决策树</h3>
+<ol>
+<li>由于 决策树 的分支结构，决策树可以很容易的构建 非线性关系</li>
+<li>不受约束 的决策树 很容易 过拟合</li>
+</ol>
+<h2 id="_16">集成学习</h2>
+<ol>
+<li>
+<p>bagging 试图<strong>降低 复杂模型过拟合的风险</strong></p>
+<ol>
+<li>It trains a large number of "strong" learners in parallel.</li>
+<li>A strong learner is a model that's relatively unconstrained.</li>
+<li>Bagging then combines all the strong learners together in order to "smooth out" their predictions.</li>
+</ol>
+</li>
+<li>
+<p>Boosting 方法<strong>试图增加简单模型的预测灵活性</strong></p>
+<ol>
+<li>It trains a large number of "weak" learners in sequence.</li>
+<li>A weak learner is a constrained model (i.e. you could limit the max depth of each decision tree).</li>
+<li>Each one in the sequence focuses on learning from the mistakes of the one before it.</li>
+<li>Boosting then combines all the weak learners into a single strong learner.</li>
+</ol>
+</li>
+<li>
+<p>Bagging 和 Boosting 都是集成学习的方法，但他们却从相反的方向来解决问题。Bagging 使用复杂的基本模型，并试图“平滑”他们的预测，而 Boosting 使用简单的基本模型，并试图“提高”总体的复杂性</p>
+</li>
+<li>当 基本的模型是 <strong>决策树</strong> 的时候，Bagging 集成和 Boosting 集成 分别叫做 <strong>random forests and boosted trees</strong></li>
+</ol>
+<h3 id="_17">随机森林</h3>
+<p>随机森林有两个“随机性”来源：</p>
+<ol>
+<li>每棵树只允许从一个随机的特征子集中进行分割（导致特征选择）</li>
+<li>每棵树只在一个随机的观察子集上进行训练（一个称为重采样的过程）</li>
+</ol>
+<p>在实践中，随机森林往往表现非常好，开箱即用</p>
+<ol>
+<li>他们经常击败需要几个星期才能建立起来的许多其他模型</li>
+<li>他们是完美的“瑞士军刀”算法，几乎总能获得好的结果</li>
+<li>他们没有很多复杂的参数来调整</li>
+</ol>
+<h3 id="boosted-tree">Boosted tree</h3>
+<ol>
+<li>每棵树的最大深度可以被调整。</li>
+<li>序列中的每一棵树都会尝试纠正之前那棵树的预测错误</li>
+</ol>
+<p>在实践中，提升的树木往往具有最高的性能上限</p>
+<ol>
+<li>经过适当的调整，他们经常击败许多其他类型的模型。</li>
+<li>调参比随机森林要复杂得多</li>
+</ol>
+<h2 id="_18">参看文献</h2>
+<ol>
+<li><a href="https://elitedatascience.com/exploratory-analysis">Day 2: Exploratory Analysis - Machine Learning Crash Course</a></li>
+<li><a href="https://elitedatascience.com/data-cleaning">Day 3: Data Cleaning - Machine Learning Crash Course</a></li>
+<li><a href="https://elitedatascience.com/imbalanced-classes">How to Handle Imbalanced Classes in Machine Learning</a></li>
+<li><a href="https://elitedatascience.com/feature-engineering">Day 4: Feature Engineering - Machine Learning Crash Course</a></li>
+<li><a href="https://elitedatascience.com/algorithm-selection">Day 5: Algorithm Selection - Machine Learning Crash Course</a></li>
+</ol></div>
         </div>
 
         <footer class="col-md-12">

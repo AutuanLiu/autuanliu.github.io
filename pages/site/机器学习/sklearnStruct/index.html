@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="AutuanLiu">
+        <link rel="canonical" href="https://autuanliu.github.io/机器学习/sklearnStruct/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SkLearn的结构 - Amber Cottage</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-27795084-5', 'mkdocs.org');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Amber Cottage</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据科学 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/ExploratoryDataAnalysis/">探索性数据分析</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/visualization/">数据可视化分析</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/imbalance/">处理类别不均衡</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/path/">数据科学基本路径</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/docker/">Docker基础</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">机器学习 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../GeneralizedLinearModels/">广义线性模型(GLM)</a>
+</li>
+                            
+<li >
+    <a href="../unsupervised/">无监督学习</a>
+</li>
+                            
+<li >
+    <a href="../model/">模型选择</a>
+</li>
+                            
+<li class="active">
+    <a href="./">SkLearn的结构</a>
+</li>
+                            
+<li >
+    <a href="../content/">学习资料总结</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">深度学习 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/CNN/">CNN</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/RNN/">RNN</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Blog/Bayesian/">贝叶斯思想</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../about/aboutme/">AboutMe</a>
+</li>
+                            
+<li >
+    <a href="../../about/license/">License</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../model/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../content/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/AutuanLiu/Machine-Learning-on-docker"><i class="fa fa-github"></i> GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#sklearn">sklearn 的结构</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="sklearn">sklearn 的结构</h2>
+<pre><code>autuanliu@163.com
+</code></pre>
+
+<ul>
+<li>datasets<ul>
+<li>'clear_data_home',</li>
+<li>'dump_svmlight_file',</li>
+<li>'fetch_20newsgroups',</li>
+<li>'fetch_20newsgroups_vectorized',</li>
+<li>'fetch_lfw_pairs',</li>
+<li>'fetch_lfw_people',</li>
+<li>'fetch_mldata',</li>
+<li>'fetch_olivetti_faces',</li>
+<li>'fetch_species_distributions',</li>
+<li>'fetch_california_housing',</li>
+<li>'fetch_covtype',</li>
+<li>'fetch_rcv1',</li>
+<li>'fetch_kddcup99',</li>
+<li>'get_data_home',</li>
+<li>'load_boston',</li>
+<li>'load_diabetes',</li>
+<li>'load_digits',</li>
+<li>'load_files',</li>
+<li>'load_iris',</li>
+<li>'load_breast_cancer',</li>
+<li>'load_linnerud',</li>
+<li>'load_mlcomp',</li>
+<li>'load_sample_image',</li>
+<li>'load_sample_images',</li>
+<li>'load_svmlight_file',</li>
+<li>'load_svmlight_files',</li>
+<li>'load_wine',</li>
+<li>'make_biclusters',</li>
+<li>'make_blobs',</li>
+<li>'make_circles',</li>
+<li>'make_classification',</li>
+<li>'make_checkerboard',</li>
+<li>'make_friedman1',</li>
+<li>'make_friedman2',</li>
+<li>'make_friedman3',</li>
+<li>'make_gaussian_quantiles',</li>
+<li>'make_hastie_10_2',</li>
+<li>'make_low_rank_matrix',</li>
+<li>'make_moons',</li>
+<li>'make_multilabel_classification',</li>
+<li>'make_regression',</li>
+<li>'make_s_curve',</li>
+<li>'make_sparse_coded_signal',</li>
+<li>'make_sparse_spd_matrix',</li>
+<li>'make_sparse_uncorrelated',</li>
+<li>'make_spd_matrix',</li>
+<li>'make_swiss_roll',</li>
+<li>'mldata_filename'</li>
+</ul>
+</li>
+<li>preprossing<ul>
+<li>'Binarizer',</li>
+<li>'FunctionTransformer',</li>
+<li>'Imputer',</li>
+<li>'KernelCenterer',</li>
+<li>'LabelBinarizer',</li>
+<li>'LabelEncoder',</li>
+<li>'MultiLabelBinarizer',</li>
+<li>'MinMaxScaler',</li>
+<li>'MaxAbsScaler',</li>
+<li>'QuantileTransformer',</li>
+<li>'Normalizer',</li>
+<li>'OneHotEncoder',</li>
+<li>'CategoricalEncoder',</li>
+<li>'PowerTransformer',</li>
+<li>'RobustScaler',</li>
+<li>'StandardScaler',</li>
+<li>'TransformedTargetRegressor',</li>
+<li>'add_dummy_feature',</li>
+<li>'PolynomialFeatures',</li>
+<li>'binarize',</li>
+<li>'normalize',</li>
+<li>'scale',</li>
+<li>'robust_scale',</li>
+<li>'maxabs_scale',</li>
+<li>'minmax_scale',</li>
+<li>'label_binarize',</li>
+<li>'quantile_transform',</li>
+<li>'power_transform' </li>
+</ul>
+</li>
+<li>feature_selection<ul>
+<li>'GenericUnivariateSelect',</li>
+<li>'RFE',</li>
+<li>'RFECV',</li>
+<li>'SelectFdr',</li>
+<li>'SelectFpr',</li>
+<li>'SelectFwe',</li>
+<li>'SelectKBest',</li>
+<li>'SelectFromModel',</li>
+<li>'SelectPercentile',</li>
+<li>'VarianceThreshold',</li>
+<li>'chi2',</li>
+<li>'f_classif',</li>
+<li>'f_oneway',</li>
+<li>'f_regression',</li>
+<li>'mutual_info_classif',</li>
+<li>'mutual_info_regression'</li>
+</ul>
+</li>
+<li>feature_extraction<ul>
+<li>'DictVectorizer'</li>
+<li>'image'</li>
+<li>'img_to_graph'</li>
+<li>'grid_to_graph'</li>
+<li>'text'</li>
+<li>'FeatureHasher' </li>
+</ul>
+</li>
+<li>decomposition<ul>
+<li>'DictionaryLearning',</li>
+<li>'FastICA',</li>
+<li>'IncrementalPCA',</li>
+<li>'KernelPCA',</li>
+<li>'MiniBatchDictionaryLearning',</li>
+<li>'MiniBatchSparsePCA',</li>
+<li>'NMF',</li>
+<li>'PCA',</li>
+<li>'RandomizedPCA',</li>
+<li>'SparseCoder',</li>
+<li>'SparsePCA',</li>
+<li>'dict_learning',</li>
+<li>'dict_learning_online',</li>
+<li>'fastica',</li>
+<li>'non_negative_factorization',</li>
+<li>'randomized_svd',</li>
+<li>'sparse_encode',</li>
+<li>'FactorAnalysis',</li>
+<li>'TruncatedSVD',</li>
+<li>'LatentDirichletAllocation'</li>
+</ul>
+</li>
+<li>cluster<ul>
+<li>'AffinityPropagation',</li>
+<li>'AgglomerativeClustering',</li>
+<li>'Birch',</li>
+<li>'DBSCAN',</li>
+<li>'KMeans',</li>
+<li>'FeatureAgglomeration',</li>
+<li>'MeanShift',</li>
+<li>'MiniBatchKMeans',</li>
+<li>'SpectralClustering',</li>
+<li>'affinity_propagation',</li>
+<li>'dbscan',</li>
+<li>'estimate_bandwidth',</li>
+<li>'get_bin_seeds',</li>
+<li>'k_means',</li>
+<li>'linkage_tree',</li>
+<li>'mean_shift',</li>
+<li>'spectral_clustering',</li>
+<li>'ward_tree',</li>
+<li>'SpectralBiclustering',</li>
+<li>'SpectralCoclustering'</li>
+</ul>
+</li>
+<li>ensemble<ul>
+<li>"BaseEnsemble"</li>
+<li>"RandomForestClassifier"</li>
+<li>"RandomForestRegressor"</li>
+<li>"RandomTreesEmbedding"</li>
+<li>"ExtraTreesClassifier"</li>
+<li>"ExtraTreesRegressor"</li>
+<li>"BaggingClassifier"</li>
+<li>"BaggingRegressor"</li>
+<li>"IsolationFores* GradientBoostingClassifier"</li>
+<li>"GradientBoostingRegressor"</li>
+<li>"AdaBoostClassifier"</li>
+<li>"AdaBoostRegressor"</li>
+<li>"VotingClassifier"</li>
+<li>"bagging", "forest"</li>
+<li>"gradient_boosting"</li>
+<li>"partial_dependence"</li>
+<li>"weight_boosting"</li>
+</ul>
+</li>
+<li>neighbors<ul>
+<li>'BallTree',</li>
+<li>'DistanceMetric',</li>
+<li>'KDTree',</li>
+<li>'KNeighborsClassifier',</li>
+<li>'KNeighborsRegressor',</li>
+<li>'NearestCentroid',</li>
+<li>'NearestNeighbors',</li>
+<li>'RadiusNeighborsClassifier',</li>
+<li>'RadiusNeighborsRegressor',</li>
+<li>'kneighbors_graph',</li>
+<li>'radius_neighbors_graph',</li>
+<li>'KernelDensity',</li>
+<li>'LSHForest',</li>
+<li>'LocalOutlierFactor' </li>
+</ul>
+</li>
+<li>neural_network<ul>
+<li>"BernoulliRBM",</li>
+<li>"MLPClassifier",</li>
+<li>"MLPRegressor"</li>
+</ul>
+</li>
+<li>semi_supervised<ul>
+<li>'LabelPropagation'</li>
+<li>'LabelSpreading' </li>
+</ul>
+</li>
+<li>svm<ul>
+<li>'LinearSVC',</li>
+<li>'LinearSVR',</li>
+<li>'NuSVC',</li>
+<li>'NuSVR',</li>
+<li>'OneClassSVM',</li>
+<li>'SVC',</li>
+<li>'SVR',</li>
+<li>'l1_min_c',</li>
+<li>'liblinear',</li>
+<li>'libsvm',</li>
+<li>'libsvm_sparse' </li>
+</ul>
+</li>
+<li>tree<ul>
+<li>"DecisionTreeClassifier"</li>
+<li>"DecisionTreeRegressor"</li>
+<li>"ExtraTreeClassifier"</li>
+<li>"ExtraTreeRegressor"</li>
+<li>"export_graphviz" </li>
+</ul>
+</li>
+<li>linear_model<ul>
+<li>'ARDRegression',</li>
+<li>'BayesianRidge',</li>
+<li>'ElasticNet',</li>
+<li>'ElasticNetCV',</li>
+<li>'Hinge',</li>
+<li>'Huber',</li>
+<li>'HuberRegressor',</li>
+<li>'Lars',</li>
+<li>'LarsCV',</li>
+<li>'Lasso',</li>
+<li>'LassoCV',</li>
+<li>'LassoLars',</li>
+<li>'LassoLarsCV',</li>
+<li>'LassoLarsIC',</li>
+<li>'LinearRegression',</li>
+<li>'Log',</li>
+<li>'LogisticRegression',</li>
+<li>'LogisticRegressionCV',</li>
+<li>'ModifiedHuber',</li>
+<li>'MultiTaskElasticNet',</li>
+<li>'MultiTaskElasticNetCV',</li>
+<li>'MultiTaskLasso',</li>
+<li>'MultiTaskLassoCV',</li>
+<li>'OrthogonalMatchingPursuit',</li>
+<li>'OrthogonalMatchingPursuitCV',</li>
+<li>'PassiveAggressiveClassifier',</li>
+<li>'PassiveAggressiveRegressor',</li>
+<li>'Perceptron',</li>
+<li>'RandomizedLasso',</li>
+<li>'RandomizedLogisticRegression',</li>
+<li>'Ridge',</li>
+<li>'RidgeCV',</li>
+<li>'RidgeClassifier',</li>
+<li>'RidgeClassifierCV',</li>
+<li>'SGDClassifier',</li>
+<li>'SGDRegressor',</li>
+<li>'SquaredLoss',</li>
+<li>'TheilSenRegressor',</li>
+<li>'enet_path',</li>
+<li>'lars_path',</li>
+<li>'lasso_path',</li>
+<li>'lasso_stability_path',</li>
+<li>'logistic_regression_path',</li>
+<li>'orthogonal_mp',</li>
+<li>'orthogonal_mp_gram',</li>
+<li>'ridge_regression',</li>
+<li>'RANSACRegressor' </li>
+</ul>
+</li>
+<li>metrics<ul>
+<li>'accuracy_score',</li>
+<li>'adjusted_mutual_info_score',</li>
+<li>'adjusted_rand_score',</li>
+<li>'auc',</li>
+<li>'average_precision_score',</li>
+<li>'balanced_accuracy_score',</li>
+<li>'calinski_harabaz_score',</li>
+<li>'classification_report',</li>
+<li>'cluster',</li>
+<li>'cohen_kappa_score',</li>
+<li>'completeness_score',</li>
+<li>'confusion_matrix',</li>
+<li>'consensus_score',</li>
+<li>'coverage_error',</li>
+<li>'euclidean_distances',</li>
+<li>'explained_variance_score',</li>
+<li>'f1_score',</li>
+<li>'fbeta_score',</li>
+<li>'fowlkes_mallows_score',</li>
+<li>'get_scorer',</li>
+<li>'hamming_loss',</li>
+<li>'hinge_loss',</li>
+<li>'homogeneity_completeness_v_measure',</li>
+<li>'homogeneity_score',</li>
+<li>'jaccard_similarity_score',</li>
+<li>'label_ranking_average_precision_score',</li>
+<li>'label_ranking_loss',</li>
+<li>'log_loss',</li>
+<li>'make_scorer',</li>
+<li>'matthews_corrcoef',</li>
+<li>'mean_absolute_error',</li>
+<li>'mean_squared_error',</li>
+<li>'mean_squared_log_error',</li>
+<li>'median_absolute_error',</li>
+<li>'mutual_info_score',</li>
+<li>'normalized_mutual_info_score',</li>
+<li>'pairwise_distances',</li>
+<li>'pairwise_distances_argmin',</li>
+<li>'pairwise_distances_argmin_min',</li>
+<li>'pairwise_distances_argmin_min',</li>
+<li>'pairwise_kernels',</li>
+<li>'precision_recall_curve',</li>
+<li>'precision_recall_fscore_support',</li>
+<li>'precision_score',</li>
+<li>'r2_score',</li>
+<li>'recall_score',</li>
+<li>'roc_auc_score',</li>
+<li>'roc_curve',</li>
+<li>'SCORERS',</li>
+<li>'silhouette_samples',</li>
+<li>'silhouette_score',</li>
+<li>'v_measure_score',</li>
+<li>'zero_one_loss',</li>
+<li>'brier_score_loss'</li>
+</ul>
+</li>
+<li>mixture<ul>
+<li>'DPGMM',</li>
+<li>'GMM',</li>
+<li>'VBGMM',</li>
+<li>'_validate_covars',</li>
+<li>'distribute_covar_matrix_to_match_covariance_type',</li>
+<li>'log_multivariate_normal_density',</li>
+<li>'sample_gaussian',</li>
+<li>'GaussianMixture',</li>
+<li>'BayesianGaussianMixture' </li>
+</ul>
+</li>
+<li>gaussian_process<ul>
+<li>'GaussianProcess'</li>
+<li>'correlation_models'</li>
+<li>'regression_models',</li>
+<li>'GaussianProcessRegressor'</li>
+<li>'GaussianProcessClassifier'</li>
+<li>'kernels'</li>
+</ul>
+</li>
+<li>manifold<ul>
+<li>'locally_linear_embedding'</li>
+<li>'LocallyLinearEmbedding'</li>
+<li>'Isomap'</li>
+<li>'MDS'</li>
+<li>'smacof'</li>
+<li>'SpectralEmbedding'</li>
+<li>'spectral_embedding'</li>
+<li>"TSNE" </li>
+</ul>
+</li>
+<li>model_selection<ul>
+<li>'BaseCrossValidator',</li>
+<li>'GridSearchCV',</li>
+<li>'TimeSeriesSplit',</li>
+<li>'KFold',</li>
+<li>'GroupKFold',</li>
+<li>'GroupShuffleSplit',</li>
+<li>'LeaveOneGroupOut',</li>
+<li>'LeaveOneOut',</li>
+<li>'LeavePGroupsOut',</li>
+<li>'LeavePOut',</li>
+<li>'RepeatedKFold',</li>
+<li>'RepeatedStratifiedKFold',</li>
+<li>'ParameterGrid',</li>
+<li>'ParameterSampler',</li>
+<li>'PredefinedSplit',</li>
+<li>'RandomizedSearchCV',</li>
+<li>'ShuffleSplit',</li>
+<li>'StratifiedKFold',</li>
+<li>'StratifiedShuffleSplit',</li>
+<li>'check_cv',</li>
+<li>'cross_val_predict',</li>
+<li>'cross_val_score',</li>
+<li>'cross_validate',</li>
+<li>'fit_grid_point',</li>
+<li>'learning_curve',</li>
+<li>'permutation_test_score',</li>
+<li>'train_test_split',</li>
+<li>'validation_curve'</li>
+</ul>
+</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2017 <a href="https://autuanliu.github.io">AutuanLiu</a></p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script src="../../js/base.js"></script>
+        <script src="../../mathjax-config.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </body>
+</html>

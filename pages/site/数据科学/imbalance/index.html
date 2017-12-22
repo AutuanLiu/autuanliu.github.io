@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="AutuanLiu">
-        <link rel="canonical" href="https://autuanliu.github.io/机器学习/LinearDiscriminant/">
+        <link rel="canonical" href="https://autuanliu.github.io/数据科学/imbalance/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>线性判别分析(LDA) - Amber Cottage</title>
+        <title>处理类别不均衡 - Amber Cottage</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -57,41 +57,53 @@
                     <li >
                         <a href="../..">Home</a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据科学 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/ExploratoryDataAnalysis/">探索性数据分析</a>
+    <a href="../ExploratoryDataAnalysis/">探索性数据分析</a>
 </li>
                             
 <li >
-    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/visualization/">数据可视化分析</a>
+    <a href="../visualization/">数据可视化分析</a>
+</li>
+                            
+<li class="active">
+    <a href="./">处理类别不均衡</a>
+</li>
+                            
+<li >
+    <a href="../path/">数据科学基本路径</a>
+</li>
+                            
+<li >
+    <a href="../docker/">Docker基础</a>
 </li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">机器学习 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../LinearSquaresRegression/">最小二乘回归(LSR)</a>
-</li>
-                            
-<li class="active">
-    <a href="./">线性判别分析(LDA)</a>
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/GeneralizedLinearModels/">广义线性模型(GLM)</a>
 </li>
                             
 <li >
-    <a href="../GeneralizedLinearModels/">广义线性模型(GLM)</a>
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/unsupervised/">无监督学习</a>
 </li>
                             
 <li >
-    <a href="../unsupervised/">无监督学习</a>
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/model/">模型选择</a>
 </li>
                             
 <li >
-    <a href="../model/">模型选择</a>
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/sklearnStruct/">SkLearn的结构</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/content/">学习资料总结</a>
 </li>
                         </ul>
                     </li>
@@ -139,12 +151,12 @@
                     </a>
                 </li>
                     <li >
-                        <a rel="next" href="../LinearSquaresRegression/">
+                        <a rel="next" href="../visualization/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../GeneralizedLinearModels/">
+                        <a rel="prev" href="../path/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -159,11 +171,137 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">处理类别不均衡</a></li>
+            <li><a href="#_2">分割数据集</a></li>
+            <li><a href="#_3">调整模型</a></li>
+            <li><a href="#fit-and-tune-models">Fit and tune models</a></li>
+            <li><a href="#overfitting-in-machine-learning-what-it-is-and-how-to-prevent">Overfitting in Machine Learning: What It Is and How to Prevent</a></li>
+            <li><a href="#how-to-handle-imbalanced-classes-in-machine-learning">How to Handle Imbalanced Classes in Machine Learning</a></li>
+            <li><a href="#_4">参考</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h1 id="_1">处理类别不均衡</h1>
+<pre><code>author: autuanliu
+email: autuanliu@163.com
+date: 2017/12/01
+</code></pre>
+
+<h2 id="_2">分割数据集</h2>
+<ul>
+<li>数据集的使用：<ul>
+<li>训练模型</li>
+<li>评估模型</li>
+<li>不要重复使用</li>
+</ul>
+</li>
+<li>训练集(包括交叉验证)</li>
+<li>测试集(最后才使用)</li>
+<li>如果模型在训练集表现良好，但是在测试集表现非常差，那就说明出现了过拟合</li>
+</ul>
+<h2 id="_3">调整模型</h2>
+<ul>
+<li>调整模型即意味着调整超参数</li>
+<li>模型参数+超参数。模型参数可以从训练集中学习到，而超参数不可以</li>
+<li>交叉验证可以 用于 调整模型，<strong>也就是调整超参数</strong></li>
+<li>++<strong>交叉验证是只使用训练集来获得模型表现性能的可靠估计的一种方法</strong>++</li>
+<li>10折交叉验证的平均值是最终的 模型表现性能，also called your cross-validated score. Because you created 10 mini train/test splits, this score is usually pretty reliable</li>
+</ul>
+<h2 id="fit-and-tune-models">Fit and tune models</h2>
+<ul>
+<li>
+<p>大致过程</p>
+<p><code>For each algorithm (i.e. regularized regression, random forest, etc.):
+    For each set of hyperparameter values to try:
+        Perform cross-validation using the training set.
+        Calculate cross-validated score.</code></p>
+<p>At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.</p>
+<p><code>For each algorithm:
+    Keep the set of hyperparameter values with best cross-validated score.
+    Re-train the algorithm on the entire training set (without cross-validation).</code></p>
+<pre><code>然后，将训练好的对应多种算法的多个模型在 **测试集**上进行测试，然后选出最好的那个模型
+</code></pre>
+</li>
+<li>
+<p>评估好坏</p>
+<ul>
+<li>For regression tasks, we recommend Mean Squared Error (MSE) or Mean Absolute Error (MAE). (Lower values are better)</li>
+<li>For classification tasks, we recommend Area Under ROC Curve (AUROC). (Higher values are better)</li>
+</ul>
+</li>
+<li>询问自己<ul>
+<li>Which model had the best performance on the test set? (performance)</li>
+<li>Does it perform well across various performance metrics? (robustness)</li>
+<li>Did it also have (one of) the best cross-validated scores from the training set? (consistency)</li>
+<li>Does it solve the original business problem? (win condition) </li>
+</ul>
+</li>
+</ul>
+<h2 id="overfitting-in-machine-learning-what-it-is-and-how-to-prevent">Overfitting in Machine Learning: What It Is and How to Prevent</h2>
+<p>防止过度拟合</p>
+<ul>
+<li>Cross-validation</li>
+<li>Train with more data</li>
+<li>Remove features</li>
+<li>Early stopping</li>
+<li>Regularization</li>
+<li>Ensembling</li>
+</ul>
+<h2 id="how-to-handle-imbalanced-classes-in-machine-learning">How to Handle Imbalanced Classes in Machine Learning</h2>
+<ul>
+<li>不平衡类出现在许多领域，包括：<ul>
+<li>欺诈识别</li>
+<li>垃圾邮件过滤</li>
+<li>疾病筛查</li>
+<li>SaaS订阅流失</li>
+<li>广告点击</li>
+</ul>
+</li>
+<li>处理方法<ul>
+<li>Up-sample Minority Class<ul>
+<li>随机从最少的类别中 ++复制++ 信号，以加强少数类别的存在感（重采样）  </li>
+<li>将每个类的观察分成不同的数据框</li>
+<li>将使用replace方法对少数类重新抽样，并设置抽样数以匹配多数类</li>
+<li>将把上采样的少数类DataFrame与原始的大多数类DataFrame结合起来</li>
+</ul>
+</li>
+<li>Down-sample Majority Class<ul>
+<li>从多数类中去掉一部分，直接重新采样即可</li>
+<li>将每个类的样本分成不同的数据框</li>
+<li>将对大部分类重新取样，设置样本数量以匹配少数类别的样本数量</li>
+<li>将下采样的多数类DataFrame与原始的少数类DataFrame组合起来</li>
+</ul>
+</li>
+<li>Change Your Performance Metric<ul>
+<li>分类问题通常使用 AUROC 指标<a href="https://stats.stackexchange.com/questions/132777/what-does-auc-stand-for-and-what-is-it">classification - What does AUC stand for and what is it? - Cross Validated</a></li>
+<li>要计算AUROC，需要预测的类的概率，而不仅仅是预测类。可以使用predict_proba()函数获取</li>
+</ul>
+</li>
+<li>Penalize Algorithms (Cost-Sensitive Training)<ul>
+<li>Penalized-SVM</li>
+<li>使用惩罚措施</li>
+</ul>
+</li>
+<li>Use Tree-Based Algorithms<ul>
+<li>集成树（随机森林，梯度提升树）几乎总是胜过单一的 决策树</li>
+</ul>
+</li>
+<li>将少数类别合在一起作为一个新的类</li>
+<li>SMOTE算法</li>
+</ul>
+</li>
+</ul>
+<h2 id="_4">参考</h2>
+<ol>
+<li><a href="https://elitedatascience.com/imbalanced-classes">How to Handle Imbalanced Classes in Machine Learning</a></li>
+<li><a href="https://elitedatascience.com/bias-variance-tradeoff">WTF is the Bias-Variance Tradeoff? (Infographic)</a></li>
+<li><a href="https://elitedatascience.com/dimensionality-reduction-algorithms">Dimensionality Reduction Algorithms: Strengths and Weaknesses</a></li>
+<li><a href="https://elitedatascience.com/model-training">Day 6: Model Training - Machine Learning Crash Course</a></li>
+<li><a href="https://elitedatascience.com/next-steps">Day 7: Next Steps - Machine Learning Crash Course</a></li>
+<li><a href="https://elitedatascience.com/overfitting-in-machine-learning">Overfitting in Machine Learning: What It Is and How to Prevent It</a></li>
+<li><a href="https://elitedatascience.com/machine-learning-iteration">The 5 Levels of Machine Learning Iteration</a></li>
+</ol></div>
         </div>
 
         <footer class="col-md-12">
