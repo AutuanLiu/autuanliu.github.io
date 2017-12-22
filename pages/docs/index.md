@@ -36,4 +36,4 @@ title | info
 GitHub | https://github.com/AutuanLiu
 
 
-**机遇是留给有准备的人**
+> 宝剑锋从磨砺出, 梅花香自苦寒来
