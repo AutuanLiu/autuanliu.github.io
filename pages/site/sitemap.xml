@@ -45,6 +45,18 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>https://autuanliu.github.io/机器学习/unsupervised/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/机器学习/model/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
