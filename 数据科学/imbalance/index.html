@@ -212,17 +212,25 @@ date: 2017/12/01
 <ul>
 <li>大致过程</li>
 </ul>
-<pre><code class="python">For each algorithm (i.e. regularized regression, random forest, etc.):
-    For each set of hyperparameter values to try:
-        Perform cross-validation using the training set.
-        Calculate cross-validated score.
+<blockquote>
+<p>For each algorithm (i.e. regularized regression, random forest, etc.):</p>
+<blockquote>
+<p>For each set of hyperparameter values to try:</p>
+<blockquote>
+<pre><code>   Perform cross-validation using the training set.
+   Calculate cross-validated score.
 </code></pre>
-
+</blockquote>
+</blockquote>
+</blockquote>
 <p>At the end of this process, you will have a cross-validated score for each set of hyperparameter values... for each algorithm.</p>
-<p><code>python
-For each algorithm:
-    Keep the set of hyperparameter values with best cross-validated score.
-    Re-train the algorithm on the entire training set (without cross-validation).</code></p>
+<blockquote>
+<p>For each algorithm:</p>
+<blockquote>
+<p>Keep the set of hyperparameter values with best cross-validated score.
+   Re-train the algorithm on the entire training set (without cross-validation).</p>
+</blockquote>
+</blockquote>
 <p>然后，将训练好的对应多种算法的多个模型在 <strong>测试集</strong>上进行测试，然后选出最好的那个模型</p>
 <ul>
 <li>评估好坏<ul>
