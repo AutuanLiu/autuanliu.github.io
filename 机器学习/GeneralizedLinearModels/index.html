@@ -8,7 +8,7 @@
         <meta name="author" content="AutuanLiu">
         <link rel="canonical" href="https://autuanliu.github.io/机器学习/GeneralizedLinearModels/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>广义线性模型(GLM) - Amber Cottage</title>
+        <title>广义线性模型(GLM) - Amber Cottage - knowledge worth spreading and sharing</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../..">Amber Cottage</a>
+            <a class="navbar-brand" href="../..">Amber Cottage - knowledge worth spreading and sharing</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -84,6 +84,14 @@
                             
 <li class="active">
     <a href="./">广义线性模型(GLM)</a>
+</li>
+                            
+<li >
+    <a href="../unsupervised/">无监督学习</a>
+</li>
+                            
+<li >
+    <a href="../model/">模型选择</a>
 </li>
                         </ul>
                     </li>
@@ -136,7 +144,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/CNN/">
+                        <a rel="prev" href="../unsupervised/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -166,6 +174,12 @@
             <li><a href="#12">1.2 线性和二次判别分析</a></li>
             <li><a href="#13">1.3 核岭回归</a></li>
             <li><a href="#14-svm">1.4 SVM</a></li>
+            <li><a href="#15">1.5 随机梯度下降</a></li>
+            <li><a href="#16">1.6 最近邻</a></li>
+            <li><a href="#18">1.8 交叉分解</a></li>
+            <li><a href="#19">1.9 朴素贝叶斯</a></li>
+            <li><a href="#110">1.10 决策树</a></li>
+            <li><a href="#111_1">1.11 集成方法</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -176,8 +190,8 @@
 <h2 id="111">1.1.1 普通最小二乘法</h2>
 <ul>
 <li>使 <strong>残差平方和</strong> 最小</li>
-<li>LinearRegression 会调用 fit 方法来拟合数组 X, y，并且将线性模型的系数 w 存储在其成员变量 <code>coef_</code>中</li>
-<li>最小二乘估计对于随机误差非常敏感，产生很大的方差</li>
+<li>LinearRegression 会调用 fit 方法来拟合数组 X, y, 并且将线性模型的系数 w 存储在其成员变量 <code>coef_</code>中</li>
+<li>最小二乘估计对于随机误差非常敏感, 产生很大的方差</li>
 <li>形式
 $$
   y = xW^T+b
@@ -186,68 +200,68 @@ $$</li>
 <h2 id="112">1.1.2 岭回归</h2>
 <ul>
 <li>最小化带有L2正则项的残差平方和</li>
-<li>RidgeCV 通过内置的 Alpha 参数的交叉验证来实现岭回归。 该对象与 GridSearchCV 的使用方法相同，只是它默认为 Generalized Cross-Validation(广义交叉验证 GCV)，这是一种有效的留一验证方法(LOO-CV)</li>
+<li>RidgeCV 通过内置的 Alpha 参数的交叉验证来实现岭回归. 该对象与 GridSearchCV 的使用方法相同, 只是它默认为 Generalized Cross-Validation(广义交叉验证 GCV), 这是一种有效的留一验证方法(LOO-CV)</li>
 </ul>
 <h2 id="113-lasso">1.1.3 Lasso</h2>
 <ul>
 <li>估计稀疏系数的线性模型</li>
-<li>它在一些情况下是有用的，因为它倾向于使用具有较少参数值的情况，有效地减少给定解决方案所依赖变量的数量</li>
-<li>Lasso及其变体是压缩感知领域的基础。 在一定条件下，它可以恢复一组非零权重的精确集</li>
+<li>它在一些情况下是有用的, 因为它倾向于使用具有较少参数值的情况, 有效地减少给定解决方案所依赖变量的数量</li>
+<li>Lasso及其变体是压缩感知领域的基础. 在一定条件下, 它可以恢复一组非零权重的精确集</li>
 <li>损失函数 
 $$\min \frac 1 {2 n_{samples}}||Xw-y||_2^2 +\alpha||w||_1 $$</li>
 <li>使用了 coordinate descent (坐标下降算法)来拟合系数</li>
-<li>由于 Lasso 回归产生稀疏模型，因此可以用于执行特征选择</li>
-<li>对于具有许多线性回归的高维数据集， LassoCV 最常见</li>
-<li>LassoLarsCV 在寻找 alpha parameter 参数值上更具有优势，而且如果样本数量与特征数量相比非常小时，通常 LassoLarsCV 比 LassoCV 要快</li>
-<li>当使用 k-fold 交叉验证时，正则化路径只计算一次而不是k + 1次，所以找到α的最优值是一种计算上更便宜的替代方法</li>
+<li>由于 Lasso 回归产生稀疏模型, 因此可以用于执行特征选择</li>
+<li>对于具有许多线性回归的高维数据集,  LassoCV 最常见</li>
+<li>LassoLarsCV 在寻找 alpha parameter 参数值上更具有优势, 而且如果样本数量与特征数量相比非常小时, 通常 LassoLarsCV 比 LassoCV 要快</li>
+<li>当使用 k-fold 交叉验证时, 正则化路径只计算一次而不是k + 1次, 所以找到α的最优值是一种计算上更便宜的替代方法</li>
 </ul>
 <h2 id="114-multitasklasso">1.1.4 MultiTaskLasso</h2>
 <ul>
-<li>MultiTaskLasso是一个估计多元回归稀疏系数的线性模型： y 是一个 (n_samples, n_tasks) 的二维数组，其约束条件和其他回归问题(也称为任务)是一样的，都是所选的特征值 </li>
+<li>MultiTaskLasso是一个估计多元回归稀疏系数的线性模型： y 是一个 (n_samples, n_tasks) 的二维数组, 其约束条件和其他回归问题(也称为任务)是一样的, 都是所选的特征值 </li>
 </ul>
 <h2 id="115">1.1.5 弹性网</h2>
 <ul>
-<li>弹性网络 是一种使用L1,L2范数作为先验正则项训练的线性回归模型。 这种组合允许学习到一个只有少量参数是非零稀疏的模型，就像 Lasso 一样, 但是它仍然保持 一些像 Ridge 的正则性质。我们可利用 l1_ratio 参数控制L1和L2的凸组合</li>
+<li>弹性网络 是一种使用L1,L2范数作为先验正则项训练的线性回归模型. 这种组合允许学习到一个只有少量参数是非零稀疏的模型, 就像 Lasso 一样, 但是它仍然保持 一些像 Ridge 的正则性质. 我们可利用 l1_ratio 参数控制L1和L2的凸组合</li>
 <li>弹性网络在很多特征互相联系的情况下是非常有用的</li>
-<li>Lasso很可能只随机考虑这些特征中的一个，而弹性网络更倾向于选择两个</li>
+<li>Lasso很可能只随机考虑这些特征中的一个, 而弹性网络更倾向于选择两个</li>
 <li>loss 
 $$\min \frac 1 {2 n_{samples}}||Xw-y||_2^2 +\alpha||w||_1 + \frac{\alpha(1-\rho)} 2 ||w||_2^2 $$</li>
 </ul>
 <p>ElasticNetCV 类可以通过交叉验证来设置参数alpha (<span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>) 和 l1_ratio (<span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span>) </p>
 <ul>
-<li>MultiTaskElasticNet 是一个对多回归问题估算稀疏参数的弹性网络: Y 是一个二维数组，形状是 (n_samples,n_tasks)。 其限制条件是和其他回归问题一样，是选择的特征，也称为 tasks</li>
+<li>MultiTaskElasticNet 是一个对多回归问题估算稀疏参数的弹性网络: Y 是一个二维数组, 形状是 (n_samples,n_tasks). 其限制条件是和其他回归问题一样, 是选择的特征, 也称为 tasks</li>
 <li>采用了坐标下降法求解参数</li>
 </ul>
 <h2 id="117">1.1.7 最小角回归</h2>
 <ul>
 <li>最小角回归 (LARS) 是对<strong>高维数据</strong>的回归算法</li>
-<li>LARS和逐步回归很像。 在每一步，它寻找与响应最有关联的 预测。当有很多预测由相同的关联时，它没有继续利用相同的预测，而是在这些预测中找出应该等角的方向</li>
+<li>LARS和逐步回归很像. 在每一步, 它寻找与响应最有关联的 预测. 当有很多预测由相同的关联时, 它没有继续利用相同的预测, 而是在这些预测中找出应该等角的方向</li>
 <li><strong>它对噪声非常敏感</strong></li>
-<li>LassoLars 是一个使用LARS算法的lasso模型， 不同于基于坐标下降法的实现，它可以得到一个精确解，也就是一个 关于自身参数标准化后的一个分段线性解</li>
+<li>LassoLars 是一个使用LARS算法的lasso模型,  不同于基于坐标下降法的实现, 它可以得到一个精确解, 也就是一个 关于自身参数标准化后的一个分段线性解</li>
 </ul>
 <h2 id="1110">1.1.10 贝叶斯回归</h2>
 <ul>
-<li>贝叶斯回归可以用于在预估阶段的参数正则化: 正则化参数的选择不是通过人为的选择，而是通过手动调节数据值来实现</li>
-<li>它能根据已有的数据进行改变。</li>
-<li>它能在估计过程中引入正则项。</li>
+<li>贝叶斯回归可以用于在预估阶段的参数正则化: 正则化参数的选择不是通过人为的选择, 而是通过手动调节数据值来实现</li>
+<li>它能根据已有的数据进行改变. </li>
+<li>它能在估计过程中引入正则项. </li>
 <li>它的推断过程是非常耗时的</li>
 </ul>
 <h2 id="11101">1.1.10.1 贝叶斯岭回归</h2>
 <ul>
-<li>参数 w, <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 和 <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> 是在模型拟合的时候一起被估算出来的。 剩下的超参数就是 gamma 分布的先验了。 <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 和 <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> 。 它们通常被选择为 没有信息量 。模型参数的估计一般利用 最大似然对数估计法 。</li>
+<li>参数 w, <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 和 <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> 是在模型拟合的时候一起被估算出来的. 剩下的超参数就是 gamma 分布的先验了. <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 和 <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> . 它们通常被选择为 没有信息量 . 模型参数的估计一般利用 最大似然对数估计法 . </li>
 <li><span><span class="MathJax_Preview">\alpha_1 = \alpha_2 =  \lambda_1 = \lambda_2 = 10^{-6}</span><script type="math/tex">\alpha_1 = \alpha_2 =  \lambda_1 = \lambda_2 = 10^{-6}</script></span></li>
 <li>贝叶斯岭回归对病态问题(ill-posed)的鲁棒性要更好</li>
 </ul>
 <h2 id="1111-logistic">1.1.11 logistic 回归</h2>
 <ul>
-<li>logistic 回归又被称作 logit regression(logit 回归)，maximum-entropy classification(MaxEnt，最大熵分类)，或 log-linear classifier(线性对数分类器)</li>
+<li>logistic 回归又被称作 logit regression(logit 回归), maximum-entropy classification(MaxEnt, 最大熵分类), 或 log-linear classifier(线性对数分类器)</li>
 <li>该模型利用函数 logistic function 将单次试验(single trial)的输出转化并描述为概率</li>
-<li>scikit-learn 中 logistic 回归在 LogisticRegression 类中实现了<strong>二元(binary)、一对余(one-vs-rest)及多元 logistic 回归，并带有可选的 L1 和 L2 正则化</strong></li>
+<li>scikit-learn 中 logistic 回归在 LogisticRegression 类中实现了<strong>二元(binary)、一对余(one-vs-rest)及多元 logistic 回归, 并带有可选的 L1 和 L2 正则化</strong></li>
 <li>liblinear 应用了坐标下降算法(Coordinate Descent, CD</li>
-<li>CD算法训练的模型不是真正意义上的多分类模型，而是基于 one-vs-rest 思想分解了这个优化问题，为每个类别都训练了一个二元分类器</li>
-<li>lbfgs, sag 和 newton-cg solvers (求解器)只支持 L2 罚项，对某些高维数据收敛更快。这些求解器的参数 <code>multi_class</code>设为 multinomial 即可训练一个真正的多元 logistic 回归 ，其预测的概率比默认的 one-vs-rest 设定更为准确</li>
-<li>sag 求解器基于平均随机梯度下降算法(Stochastic Average Gradient descent)。在大数据集上的表现更快，大数据集指样本量大且特征数多</li>
-<li>saga solver 是 sag 的一类变体，它支持非平滑(non-smooth)的 L1 正则选项 penalty=l1 。因此对于稀疏多元 logistic 回归 ，往往选用该求解器</li>
+<li>CD算法训练的模型不是真正意义上的多分类模型, 而是基于 one-vs-rest 思想分解了这个优化问题, 为每个类别都训练了一个二元分类器</li>
+<li>lbfgs, sag 和 newton-cg solvers (求解器)只支持 L2 罚项, 对某些高维数据收敛更快. 这些求解器的参数 <code>multi_class</code>设为 multinomial 即可训练一个真正的多元 logistic 回归 , 其预测的概率比默认的 one-vs-rest 设定更为准确</li>
+<li>sag 求解器基于平均随机梯度下降算法(Stochastic Average Gradient descent). 在大数据集上的表现更快, 大数据集指样本量大且特征数多</li>
+<li>saga solver 是 sag 的一类变体, 它支持非平滑(non-smooth)的 L1 正则选项 penalty=l1 . 因此对于稀疏多元 logistic 回归 , 往往选用该求解器</li>
 </ul>
 <table>
 <thead>
@@ -276,40 +290,40 @@ $$\min \frac 1 {2 n_{samples}}||Xw-y||_2^2 +\alpha||w||_1 + \frac{\alpha(1-\rho)
 <p>saga 一般都是最佳的选择,但出于一些历史遗留原因默认的是 liblinear</p>
 </li>
 <li>
-<p>SGDClassifier 和 SGDRegressor 分别用于拟合分类问题和回归问题的线性模型，可使用不同的(凸)损失函数，支持不同的罚项</p>
+<p>SGDClassifier 和 SGDRegressor 分别用于拟合分类问题和回归问题的线性模型, 可使用不同的(凸)损失函数, 支持不同的罚项</p>
 </li>
 </ul>
 <h2 id="1113-perceptron">1.1.13 Perceptron感知机</h2>
 <ul>
 <li>Perceptron 是适用于 large scale learning(大规模学习)的一种简单算法</li>
-<li>不需要设置学习率(learning rate)。</li>
-<li>不需要正则化处理。</li>
+<li>不需要设置学习率(learning rate). </li>
+<li>不需要正则化处理. </li>
 <li>仅使用错误样本更新模型</li>
-<li>合页损失(hinge loss)的感知机比SGD略快，所得模型更稀疏</li>
+<li>合页损失(hinge loss)的感知机比SGD略快, 所得模型更稀疏</li>
 </ul>
 <h2 id="1116">1.1.16 多项式回归：用基函数展开线性模型</h2>
 <ul>
-<li>polynomial regression 是线性模型中的同一类，我们认为以上(即模型是线性 )，可以用同样的方法解决</li>
+<li>polynomial regression 是线性模型中的同一类, 我们认为以上(即模型是线性 ), 可以用同样的方法解决</li>
 <li>poly = PolynomialFeatures(degree=2) 和 poly.fit_transform(X) 用于实现非线性到线性的转换</li>
 <li>利用多项式特征训练的线性模型能够准确地恢复输入多项式系数</li>
 </ul>
 <h2 id="12">1.2 线性和二次判别分析</h2>
 <ul>
-<li>Linear Discriminant Analysis(线性判别分析)(discriminant_analysis.LinearDiscriminantAnalysis) 和 Quadratic Discriminant Analysis (二次判别分析)(discriminant_analysis.QuadraticDiscriminantAnalysis) 是两个经典的分类器。 正如他们名字所描述的那样，他们分别代表了<strong>线性决策平面和二次决策平面</strong></li>
-<li>其天生的多分类特性，在实践中已经证明很有效，并且 <strong>不需要再次调参</strong></li>
-<li>线性判别分析只能学习线性边界， 而二次判别分析则可以学习二次函数的边界，因此它相对而言更加灵活</li>
-<li>线性判别分析降维 是总体而言十分强大的降维方式，同样也 <strong>仅仅在多分类环境下才会起作用</strong></li>
+<li>Linear Discriminant Analysis(线性判别分析)(discriminant_analysis.LinearDiscriminantAnalysis) 和 Quadratic Discriminant Analysis (二次判别分析)(discriminant_analysis.QuadraticDiscriminantAnalysis) 是两个经典的分类器. 正如他们名字所描述的那样, 他们分别代表了<strong>线性决策平面和二次决策平面</strong></li>
+<li>其天生的多分类特性, 在实践中已经证明很有效, 并且 <strong>不需要再次调参</strong></li>
+<li>线性判别分析只能学习线性边界,  而二次判别分析则可以学习二次函数的边界, 因此它相对而言更加灵活</li>
+<li>线性判别分析降维 是总体而言十分强大的降维方式, 同样也 <strong>仅仅在多分类环境下才会起作用</strong></li>
 <li><code>discriminant_analysis.LinearDiscriminantAnalysis.transform</code></li>
 <li>LDA 分类器中存在一个利用线性投影到 K-1 个维度空间的降维工具</li>
 <li>收缩是一个在训练样本数量相比特征而言很小的情况下可以提升预测(准确性)的协方差矩阵</li>
-<li>LDA 收缩可以通过设置 discriminant_analysis.LinearDiscriminantAnalysis 类的 shrinkage 参数为 ‘auto’ 以得到应用。</li>
+<li>LDA 收缩可以通过设置 discriminant_analysis.LinearDiscriminantAnalysis 类的 shrinkage 参数为 ‘auto’ 以得到应用. </li>
 </ul>
 <h2 id="13">1.3 核岭回归</h2>
 <ul>
-<li>Kernel ridge regression (KRR) (内核岭回归由 使用内核方法的 (岭回归)(使用 l2 正则化的最小二乘法)所组成。因此，它所学习到的在空间中不同的线性函数是由不同的内核和数据所导致的。对于非线性的内核，它与原始空间中的非线性函数相对应</li>
-<li>由 KernelRidge 学习的模型的形式与支持向量回归( SVR ) 是一样的。但是他们使用不同的损失函数：内核岭回归(KRR)使用 squared error loss (平方误差损失函数)而 support vector regression (支持向量回归)(SVR)使用 <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span> -insensitive loss ，两者都使用 l2 regularization (l2 正则化)。与 SVR 相反，拟合 KernelRidge 可以以 closed-form (封闭形式)完成，对于中型数据集通常更快。另一方面，学习的模型是非稀疏的，因此比 SVR 慢， 在预测时间，SVR 学习了 <span><span class="MathJax_Preview">\epsilon&gt;0</span><script type="math/tex">\epsilon>0</script></span> 的稀疏模型。</li>
-<li>它们的 learned functions (学习函数)非常相似;但是，拟合 KernelRidge 大约比拟合 SVR 快七倍(都使用 grid-search ( 网格搜索 ) )。然而，由于 SVR 只学习了一个稀疏模型，所以 SVR 预测 10 万个目标值比使用 KernelRidge 快三倍以上。SVR 只使用了百分之三十的数据点做为支撑向量</li>
-<li>对于中型训练集(小于 1000 个样本)，拟合 KernelRidge 比 SVR 快; 然而，对于更大的训练集 SVR 通常更好。 关于预测时间，由于学习的稀疏解，SVR 对于所有不同大小的训练集都比 KernelRidge 快</li>
+<li>Kernel ridge regression (KRR) (内核岭回归由 使用内核方法的 (岭回归)(使用 l2 正则化的最小二乘法)所组成. 因此, 它所学习到的在空间中不同的线性函数是由不同的内核和数据所导致的. 对于非线性的内核, 它与原始空间中的非线性函数相对应</li>
+<li>由 KernelRidge 学习的模型的形式与支持向量回归( SVR ) 是一样的. 但是他们使用不同的损失函数：内核岭回归(KRR)使用 squared error loss (平方误差损失函数)而 support vector regression (支持向量回归)(SVR)使用 <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span> -insensitive loss , 两者都使用 l2 regularization (l2 正则化). 与 SVR 相反, 拟合 KernelRidge 可以以 closed-form (封闭形式)完成, 对于中型数据集通常更快. 另一方面, 学习的模型是非稀疏的, 因此比 SVR 慢,  在预测时间, SVR 学习了 <span><span class="MathJax_Preview">\epsilon&gt;0</span><script type="math/tex">\epsilon>0</script></span> 的稀疏模型. </li>
+<li>它们的 learned functions (学习函数)非常相似;但是, 拟合 KernelRidge 大约比拟合 SVR 快七倍(都使用 grid-search ( 网格搜索 ) ). 然而, 由于 SVR 只学习了一个稀疏模型, 所以 SVR 预测 10 万个目标值比使用 KernelRidge 快三倍以上. SVR 只使用了百分之三十的数据点做为支撑向量</li>
+<li>对于中型训练集(小于 1000 个样本), 拟合 KernelRidge 比 SVR 快; 然而, 对于更大的训练集 SVR 通常更好. 关于预测时间, 由于学习的稀疏解, SVR 对于所有不同大小的训练集都比 KernelRidge 快</li>
 <li><strong>稀疏解</strong>是说只使用一部分特征作为关键训练特征</li>
 </ul>
 <h2 id="14-svm">1.4 SVM</h2>
@@ -329,9 +343,100 @@ $$\min \frac 1 {2 n_{samples}}||Xw-y||_2^2 +\alpha||w||_1 + \frac{\alpha(1-\rho)
 <pre><code class="python">wclf = svm.SVC(kernel='linear', class_weight={1: 10})
 </code></pre>
 
-<p>支持向量分类的方法可以被扩展用作解决回归问题. 这个方法被称作支持向量回归</p>
-<p>支持向量分类生成的模型只依赖于训练集的子集,因为构建模型的 cost function 不在乎边缘之外的训练点. 类似的, 支持向量回归生成的模型只依赖于训练集的子集, 因为构建模型的 cost function 忽略任何接近于模型预测的训练数据</p>
-<p>SVM的核心是一个二次规划问题(Quadratic Programming, QP)，是将支持向量和训练数据的其余部分分离开来</p></div>
+<p>支持向量分类的方法可以被扩展用作解决回归问题. 这个方法被称作支持向量回归. 支持向量分类生成的模型只依赖于训练集的子集,因为构建模型的 cost function 不在乎边
+缘之外的训练点. 类似的, 支持向量回归生成的模型只依赖于训练集的子集, 因为构建模型的 cost function 忽略任何接近于模型预测的训练数据. SVM的核心是一个二次规划
+问题(Quadratic Programming, QP), 是将支持向量和训练数据的其余部分分离开来, 支持向量机是个强大的工具, 不过它的计算和存储空间要求也会随着要训练向量的数目增
+加而快速增加</p>
+<ul>
+<li>惩罚系数C的设置:在合理的情况下, C 的默认选择为 1. 如果您有很多混杂的观察数据, 您应该要去调小它. C 越小, 就能更好地去正规化估计</li>
+<li>常用核函数</li>
+<li>线性 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></script></span></li>
+<li>多项式 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></script></span></li>
+<li>高斯核rbf <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></script></span></li>
+<li>拉普拉斯 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></script></span></li>
+<li>sigmoid <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></script></span></li>
+<li>
+<p>核函数通过创建实例时进行指定 svm.SVC(kernel='linear')</p>
+</li>
+<li>
+<p>自定义核函数</p>
+</li>
+</ul>
+<pre><code class="python">def my_kernel(x, y):
+  return np.dot(x, y.T)
+</code></pre>
+
+<ul>
+<li>当用 径向基(RBF)内核去训练 SVM, 有两个参数必须要去考虑: C, <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>. 较小的 C 会使决策表面更平滑, 同时较高的 C 旨在正确地分类所有训练样本. Gamma 定义了单一 训练样本能起到多大的影响. 较大的 gamma 会更让其他样本受到影响</li>
+</ul>
+<h2 id="15">1.5 随机梯度下降</h2>
+<ul>
+<li>SGD 对特征缩放 敏感</li>
+<li>必须将 相同 的缩放应用于对应的测试向量中，以获得有意义的结果</li>
+<li>在拟合模型前要确保训练数据经过了打乱 <code>shuffle=True</code></li>
+</ul>
+<pre><code class="python">from sklearn.linear_model import SGDClassifier
+
+X = [[0, 0], [1, 1]]
+y = [0, 1]
+
+clf = SGDClassifier(loss='hinge', penalty='l2', max_iter=500, tol=1e-3)
+clf.fit(X, y)
+# prediction
+res = clf.predict([[2, 2]])
+print(res)
+</code></pre>
+
+<ul>
+<li>SGDClassifier 通过在将多个 binary classifiers组合在 one versus all(OVA) 方案中来支持多类分类</li>
+<li>SGDRegressor 类实现了一个简单的随即梯度下降学习程序, 它支持不同的损失函数和惩罚来拟合线性回归模型</li>
+</ul>
+<h2 id="16">1.6 最近邻</h2>
+<ul>
+<li>无监督的最近邻是许多其它学习方法的基础, 尤其是 manifold learning 和 spectral clustering</li>
+<li>受监督的 neighbors-based学习分为两种 classification 针对的是具有离散标签的数据, regression 针对的是具有连续标签的数据</li>
+<li>非参数方法</li>
+<li>应用于决策边界非常不规则的情景下</li>
+</ul>
+<h3 id="_2">最近邻分类</h3>
+<ul>
+<li>分类是由每个点的最近邻的简单多数投票中计算得到的</li>
+<li>一个查询点的数据类型是由它最近邻点中最具代表性的数据类型来决定的</li>
+<li>k 值的最佳选择是高度数据依赖的</li>
+<li>通常较大的 k 是会抑制噪声的影响, 但是使得分类界限不明显</li>
+<li>如果数据是不均匀采样的, 那么 RadiusNeighborsClassifier 中的基于半径的近邻分类可能是更好的选择</li>
+<li>指定一个固定半径 r, 使得稀疏邻居中的点使用较少的最近邻来分类</li>
+</ul>
+<h3 id="_3">最近邻回归</h3>
+<ul>
+<li>最近邻回归是用在数据标签为连续变量, 而不是离散变量的情况下</li>
+<li>分配给查询点的标签是由它的 <strong>最近邻标签的均值</strong> 计算而来的</li>
+<li>在某些环境下, 增加权重可能是有利的, 使得附近点对于回归所作出的贡献多于远处点. 这可以通过 weights 关键字来实现</li>
+<li>高斯过程是一种常用的监督学习方法，旨在解决 <em>回归问题</em> 和 <em>概率分类问题</em></li>
+</ul>
+<h2 id="18">1.8 交叉分解</h2>
+<ul>
+<li>偏最小二乘法(PLS)和典型相关分析(CCA)</li>
+<li><strong>具有发现两个多元数据集之间的线性关系</strong> 的用途: fit method(拟合方法)的参数 X 和 Y 都是 2 维数组 </li>
+</ul>
+<h2 id="19">1.9 朴素贝叶斯</h2>
+<ul>
+<li>朴素贝叶斯方法是基于贝叶斯定理的一组有监督学习算法</li>
+<li>简单地假设 <strong>每对特征之间相互独立</strong>, 朴素的由来</li>
+<li>高斯朴素贝叶斯 的参数使用 最大似然估计</li>
+<li>多项分布朴素贝叶斯</li>
+<li>伯努利朴素贝叶斯</li>
+<li>堆外朴素贝叶斯模型拟合</li>
+</ul>
+<h2 id="110">1.10 决策树</h2>
+<ul>
+<li>无参监督学习方法</li>
+<li>回归与分类</li>
+<li>目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值</li>
+<li>决策树模型容易产生一个过于复杂的模型, 这样的模型对数据的泛化性能会很差</li>
+<li>决策树可能是不稳定的, 因为数据中的微小变化可能会导致完全不同的树生成</li>
+</ul>
+<h2 id="111_1">1.11 集成方法</h2></div>
         </div>
 
         <footer class="col-md-12">
