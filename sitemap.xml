@@ -23,21 +23,27 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>https://autuanliu.github.io/数据科学/imbalance/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/数据科学/path/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/数据科学/docker/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
-        
-    <url>
-     <loc>https://autuanliu.github.io/机器学习/LinearSquaresRegression/</loc>
-     <lastmod>2017-12-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://autuanliu.github.io/机器学习/LinearDiscriminant/</loc>
-     <lastmod>2017-12-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/GeneralizedLinearModels/</loc>
@@ -53,6 +59,18 @@
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/model/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/机器学习/sklearnStruct/</loc>
+     <lastmod>2017-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/机器学习/content/</loc>
      <lastmod>2017-12-22</lastmod>
      <changefreq>daily</changefreq>
     </url>

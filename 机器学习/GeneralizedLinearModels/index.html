@@ -68,19 +68,23 @@
 <li >
     <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/visualization/">数据可视化分析</a>
 </li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/imbalance/">处理类别不均衡</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/path/">数据科学基本路径</a>
+</li>
+                            
+<li >
+    <a href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/docker/">Docker基础</a>
+</li>
                         </ul>
                     </li>
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">机器学习 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            
-<li >
-    <a href="../LinearSquaresRegression/">最小二乘回归(LSR)</a>
-</li>
-                            
-<li >
-    <a href="../LinearDiscriminant/">线性判别分析(LDA)</a>
-</li>
                             
 <li class="active">
     <a href="./">广义线性模型(GLM)</a>
@@ -92,6 +96,14 @@
                             
 <li >
     <a href="../model/">模型选择</a>
+</li>
+                            
+<li >
+    <a href="../sklearnStruct/">SkLearn的结构</a>
+</li>
+                            
+<li >
+    <a href="../content/">学习资料总结</a>
 </li>
                         </ul>
                     </li>
@@ -139,7 +151,7 @@
                     </a>
                 </li>
                     <li >
-                        <a rel="next" href="../LinearDiscriminant/">
+                        <a rel="next" href="../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/docker/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -350,11 +362,16 @@ $$\min \frac 1 {2 n_{samples}}||Xw-y||_2^2 +\alpha||w||_1 + \frac{\alpha(1-\rho)
 <ul>
 <li>惩罚系数C的设置:在合理的情况下, C 的默认选择为 1. 如果您有很多混杂的观察数据, 您应该要去调小它. C 越小, 就能更好地去正规化估计</li>
 <li>常用核函数</li>
-<li>线性 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></script></span></li>
-<li>多项式 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></script></span></li>
-<li>高斯核rbf <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></script></span></li>
-<li>拉普拉斯 <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></script></span></li>
-<li>sigmoid <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></script></span></li>
+<li>线性 
+  <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = x_i^T x_j</span><script type="math/tex">k(x_i, x_j) = x_i^T x_j</script></span></script></span></li>
+<li>多项式 
+  <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = (x_i^T x_j)^d</span><script type="math/tex">k(x_i, x_j) = (x_i^T x_j)^d</script></span></script></span></li>
+<li>高斯核rbf 
+  <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||^2}{2 \sigma^2})</script></span></script></span></li>
+<li>拉普拉斯 
+  <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</span><script type="math/tex">k(x_i, x_j) = exp(-\frac{||x_i - x_j||}{\sigma})</script></span></script></span></li>
+<li>sigmoid 
+  <span><span class="MathJax_Preview"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></span><script type="math/tex"><span><span class="MathJax_Preview">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</span><script type="math/tex">k(x_i, x_j) = \tanh(\beta x_i^T x_j + \theta)</script></span></script></span></li>
 <li>
 <p>核函数通过创建实例时进行指定 svm.SVC(kernel='linear')</p>
 </li>
