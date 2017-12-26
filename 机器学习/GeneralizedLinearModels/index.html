@@ -193,11 +193,6 @@
             <li><a href="#110">1.10 决策树</a></li>
             <li><a href="#111_1">1.11 集成方法</a></li>
             <li><a href="#xgboost">XGBoost</a></li>
-        <li class="main "><a href="#alternativly">alternativly:</a></li>
-        <li class="main "><a href="#plst-paramitems">plst = param.items()</a></li>
-        <li class="main "><a href="#plst-eval_metric-ams0">plst += [('eval_metric', 'ams@0')]</a></li>
-            <li><a href="#xgboost-api">xgboost 库的主要 API</a></li>
-            <li><a href="#_4">解释性</a></li>
             <li><a href="#112_1">1.12 多类和多标签算法</a></li>
             <li><a href="#_5">特征选择</a></li>
             <li><a href="#_6">概率校准</a></li>
@@ -607,12 +602,10 @@ param['eval_metric'] = 'auc'</code></p>
 <ul>
 <li>可以指定多个评估指标</li>
 </ul>
-<p>```python
-param['eval_metric'] = ['auc', 'ams@0'] </p>
-<h1 id="alternativly">alternativly:</h1>
-<h1 id="plst-paramitems">plst = param.items()</h1>
-<h1 id="plst-eval_metric-ams0">plst += [('eval_metric', 'ams@0')]</h1>
-<p>```</p>
+<p><code>python
+param['eval_metric'] = ['auc', 'ams@0'] 
+plst = param.items()
+plst += [('eval_metric', 'ams@0')]</code></p>
 <ul>
 <li>指定 模式</li>
 </ul>
