@@ -193,6 +193,9 @@
             <li><a href="#110">1.10 决策树</a></li>
             <li><a href="#111_1">1.11 集成方法</a></li>
             <li><a href="#112_1">1.12 多类和多标签算法</a></li>
+            <li><a href="#_5">特征选择</a></li>
+            <li><a href="#_6">概率校准</a></li>
+            <li><a href="#_7">神经网络</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -500,14 +503,14 @@ print(res)
 <p>在极限随机树中ExtraTreesClassifier 和 ExtraTreesRegressor, 计算分割点方法中的随机性进一步增强. 在随机森林中,使用的特征是<strong>候选特征的随机子集</strong>; 不同于寻找最具有区分度的阈值, 这里的阈值是针对每个候选特征随机生成的,并且选择这些随机生成的阈值中的最佳者作为分割规则. 这种做法通常能够减少一点模型的方差,代价则是略微地增大偏差</p>
 <p>回归问题中使用 max_features = n_features, 分类问题使用 max_features = sqrt(n_features (其中 n_features 是特征的个数)是比较好的默认值. max_depth = None 和 min_samples_split = 2 结合通常会有不错的效果(即生成完全的树). 请记住,这些(默认)值通常不是最佳的,同时还可能消耗大量的内存,最佳参数值应由交叉验证获得</p>
 <p>如果设置 n_jobs = k, 则计算被划分为 k 个作业, 并运行在机器的 k 个核上.  如果设置 n_jobs = -1, 则使用机器的所有核</p>
-<p>特征对目标变量预测的相对重要性可以通过（树中的决策节点的)特征使用的相对顺序（即深度)来进行评估.  决策树顶部使用的特征对更大一部分输入样本的最终预测决策做出贡献；因此, 可以使用接受每个特征对最终预测的贡献的样本比例来评估该 特征的相对重要性</p>
+<p>特征对目标变量预测的相对重要性可以通过(树中的决策节点的)特征使用的相对顺序(即深度)来进行评估.  决策树顶部使用的特征对更大一部分输入样本的最终预测决策做出贡献；因此, 可以使用接受每个特征对最终预测的贡献的样本比例来评估该 特征的相对重要性</p>
 <p><strong>首先应当评估各个特征的重要性</strong></p>
 <p>http://sklearn.apachecn.org/cn/0.19.0/auto_examples/ensemble/plot_forest_importances.html#sphx-glr-auto-examples-ensemble-plot-forest-importances-py</p>
 <h3 id="adaboost">AdaBoost</h3>
-<p>AdaBoost 的核心思想是用反复修改的数据（主要是修正数据的权重)来学习一系列的弱学习器(一个弱学习器模型仅仅比随机猜测好一点, 比如一个简单的决策树),由这些弱学习器的预测结果通过加权投票(或加权求和)的方式组合, 得到我们最终的预测结果. 在每一次所谓的提升（boosting)迭代中, 数据的修改由应用于每一个训练样本的（新) 的权重 w_1, w_2, …, w_N 组成（即修改每一个训练样本应用于新一轮学习器的权重).  初始化时,将所有弱学习器的权重都设置为  w_i = 1/N ,因此第一次迭代仅仅是通过原始数据训练出一个弱学习器. 在接下来的 连续迭代中,样本的权重逐个地被修改,学习算法也因此要重新应用这些已经修改的权重. 在给定的一个迭代中, 那些在上一轮迭代中被预测为错误结果的样本的权重将会被增加, 而那些被预测为正确结果的样本的权 重将会被降低. 随着迭代次数的增加, 那些难以预测的样例的影响将会越来越大, 每一个随后的弱学习器都将 会被强迫更加关注那些在之前被错误预测的样例</p>
+<p>AdaBoost 的核心思想是用反复修改的数据(主要是修正数据的权重)来学习一系列的弱学习器(一个弱学习器模型仅仅比随机猜测好一点, 比如一个简单的决策树),由这些弱学习器的预测结果通过加权投票(或加权求和)的方式组合, 得到我们最终的预测结果. 在每一次所谓的提升(boosting)迭代中, 数据的修改由应用于每一个训练样本的(新) 的权重 w_1, w_2, …, w_N 组成(即修改每一个训练样本应用于新一轮学习器的权重).  初始化时,将所有弱学习器的权重都设置为  w_i = 1/N ,因此第一次迭代仅仅是通过原始数据训练出一个弱学习器. 在接下来的 连续迭代中,样本的权重逐个地被修改,学习算法也因此要重新应用这些已经修改的权重. 在给定的一个迭代中, 那些在上一轮迭代中被预测为错误结果的样本的权重将会被增加, 而那些被预测为正确结果的样本的权 重将会被降低. 随着迭代次数的增加, 那些难以预测的样例的影响将会越来越大, 每一个随后的弱学习器都将 会被强迫更加关注那些在之前被错误预测的样例</p>
 <h3 id="gradient-tree-boosting">Gradient Tree Boosting</h3>
 <p>Gradient Tree Boosting 或梯度提升回归树(GBRT)是对于任意的可微损失函数的提升算法的泛化. GBRT 是一个准确高效的现有程序, 它既能用于分类问题也可以用于回归问题. 梯度树提升模型被应用到各种领域, 包括网页搜索排名和生态领域.</p>
-<p>回归树基学习器的大小定义了可以被梯度提升模型捕捉到的变量（即特征)相互作用（即多个特征共同对预测产生影响)的程度. 通常一棵深度为 h 的树能捕获到秩为 h 的相互作用</p>
+<p>回归树基学习器的大小定义了可以被梯度提升模型捕捉到的变量(即特征)相互作用(即多个特征共同对预测产生影响)的程度. 通常一棵深度为 h 的树能捕获到秩为 h 的相互作用</p>
 <ul>
 <li>
 <p>目前支持的损失函数, 具体损失函数可以通过参数 loss 指定:</p>
@@ -529,6 +532,175 @@ print(res)
 </li>
 </ul>
 <p>在拟合一定数量的弱分类器时, 参数 learning_rate 和参数 n_estimators 之间有很强的制约关系. 较小的 learning_rate 需要大量的弱分类器才能保证训练误差的不变.经验表明数值较小的 learning_rate 将会得到更好的测试误差. </p>
+<h3 id="xgboost">XGBoost</h3>
+<ul>
+<li>XGBoost 是 Extreme Gradient Boosting 的缩写</li>
+<li>XGBoost 用于监督学习问题</li>
+<li>正则化项控制模型的复杂性, 这有助于避免过拟合</li>
+<li>树集成模型是一组 classification and regression trees(CART)</li>
+<li>
+<p>CART 与 decision trees(决策树)有些许的不同, 就是叶子只包含决策值. 在 CART 中, 每个叶子都有一个 real score (真实的分数), 这给了我们更丰富的解释, 超越了分类</p>
+</li>
+<li>
+<p>支持导入的数据格式</p>
+<ul>
+<li>libsvm txt format file</li>
+<li>numpy 的 2D 数组</li>
+<li>xgboost binary buffer file</li>
+</ul>
+</li>
+<li>
+<p>数据将会被存在一个名为 DMatrix 的对象中</p>
+</li>
+<li>
+<p>加载 ligbsvm 文本格式或者 XGBoost 二进制文件到 DMatrix 对象中</p>
+</li>
+</ul>
+<pre><code class="python">dtrain = xgb.DMatrix('train.svm.txt')
+dtest = xgb.DMatrix('test.svm.buffer')
+</code></pre>
+
+<ul>
+<li>加载 numpy 的数组到 DMatrix 对象中</li>
+</ul>
+<pre><code class="python">data = np.random.rand(5,10) # 5 entities, each contains 10 features
+label = np.random.randint(2, size=5) # binary target
+dtrain = xgb.DMatrix( data, label=label)
+</code></pre>
+
+<ul>
+<li>加载 scpiy.sparse 数组到 DMatrix 对象中</li>
+</ul>
+<pre><code class="python">csr = scipy.sparse.csr_matrix((dat, (row, col)))
+dtrain = xgb.DMatrix(csr)
+</code></pre>
+
+<ul>
+<li>保存 DMatrix 到 XGBoost 二进制文件中后, 会在下次加载时更快</li>
+</ul>
+<pre><code class="python">dtrain = xgb.DMatrix('train.svm.txt')
+dtrain.save_binary(&quot;train.buffer&quot;)
+</code></pre>
+
+<ul>
+<li>处理 DMatrix 中的缺失值, 可以通过指定缺失值的参数来初始化 DMatrix</li>
+</ul>
+<pre><code class="python">dtrain = xgb.DMatrix(data, label=label, missing = -999.0)
+</code></pre>
+
+<ul>
+<li>xgboost 使用 字典 来保存参数<ul>
+<li>booster 参数</li>
+</ul>
+</li>
+</ul>
+<pre><code class="python">param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
+param['nthread'] = 4
+param['eval_metric'] = 'auc'
+</code></pre>
+
+<pre><code>* 可以指定多个评估指标
+</code></pre>
+<pre><code class="python">param['eval_metric'] = ['auc', 'ams@0'] 
+
+# alternativly:
+# plst = param.items()
+# plst += [('eval_metric', 'ams@0')]
+</code></pre>
+
+<pre><code>* 指定 模式
+</code></pre>
+<pre><code class="python">evallist  = [(dtest,'eval'), (dtrain,'train')]
+</code></pre>
+
+<pre><code>* 训练模型
+</code></pre>
+<pre><code class="python">num_round = 10
+bst = xgb.train( plst, dtrain, num_round, evallist )
+</code></pre>
+
+<pre><code>* 保存
+</code></pre>
+<pre><code class="python">bst.save_model('0001.model')
+</code></pre>
+
+<pre><code>* 加载和转存
+</code></pre>
+<pre><code class="python">dump_model()
+load_model()
+</code></pre>
+
+<ul>
+<li>如果您有一个验证集, 你可以使用提前停止找到最佳数量的 boosting rounds（梯度次数）. 提前停止至少需要一个 evals 集合. 如果有多个, 它将使用最后一个.</li>
+</ul>
+<pre><code class="python">train(..., evals=evals, early_stopping_rounds=10)
+</code></pre>
+
+<ul>
+<li>
+<p>如果提前停止，模型将有三个额外的字段: bst.best_score, bst.best_iteration 和 bst.best_ntree_limit. 请注意 train() 将从上一次迭代中返回一个模型, 而不是最好的一个.</p>
+</li>
+<li>
+<p>这与两个度量标准一起使用以达到最小化（RMSE, 对数损失等）和最大化（MAP, NDCG, AUC）. 请注意, 如果您指定多个评估指标, 则 param ['eval_metric'] 中的最后一个用于提前停止</p>
+</li>
+<li>
+<p>预测</p>
+</li>
+</ul>
+<pre><code class="python">predict()
+</code></pre>
+
+<ul>
+<li>绘图</li>
+</ul>
+<pre><code class="python"># 重要性
+xgb.plot_importance(bst)
+# 树
+xgb.plot_tree(bst, num_trees=2)
+xgb.to_graphviz(bst, num_trees=2)
+</code></pre>
+
+<h4 id="xgboost-api">xgboost 库的主要 API</h4>
+<ul>
+<li>class xgboost.DMatrix() # 类<ul>
+<li>get_label()</li>
+<li>get_weight()</li>
+<li>num_col()</li>
+<li>save_binary(fname, silent=True)</li>
+<li>set_label(label)</li>
+<li>slice(rindex)</li>
+</ul>
+</li>
+<li>class xgboost.Booster(params=None, cache=(), model_file=None) # 类<ul>
+<li>eval(data, name='eval', iteration=0)</li>
+<li>get_score(fmap='', importance_type='weight')</li>
+<li>get_split_value_histogram(feature, fmap='', bins=None, as_pandas=True)</li>
+<li>predict(data, output_margin=False, ntree_limit=0, pred_leaf=False, pred_contribs=False, approx_contribs=False)</li>
+<li>save_model(fname)</li>
+</ul>
+</li>
+<li>xgboost.train() # 函数<ul>
+<li>params (dict) – Booster params</li>
+<li>dtrain (DMatrix) – Data to be trained</li>
+<li>num_boost_round (int) – Number of boosting iterations</li>
+<li>early_stopping_rounds (int) – Activates early stopping</li>
+<li>learning_rates</li>
+</ul>
+</li>
+<li>xgboost.cv() # 函数</li>
+<li>class xgboost.XGBRegressor() # 类, sklearn wrapper</li>
+<li>class xgboost.XGBClassifier()</li>
+<li>xgboost.plot_importance() # 函数</li>
+<li>xgboost.plot_tree() # 函数</li>
+<li>
+<p>xgboost.to_graphviz() # 函数</p>
+</li>
+<li>
+<p><a href="https://github.com/dmlc/xgboost/tree/master/demo">xgboost/demo at master · dmlc/xgboost</a></p>
+</li>
+<li><a href="https://github.com/tqchen/xgboost/tree/master/demo/guide-python">xgboost/demo/guide-python at master · tqchen/xgboost</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/python/python_api.html">Python API Reference — xgboost 0.6 documentation</a></li>
+</ul>
 <h3 id="_4">解释性</h3>
 <ul>
 <li>特征重要性 </li>
@@ -537,8 +709,47 @@ print(res)
 <ul>
 <li>部分依赖 (Partial dependence)</li>
 </ul>
-<p>VotingClassifier （投票分类器)的原理是结合了多个不同的机器学习分类器, 并且采用多数表决(majority vote)或者平均预测概率(软投票)的方式来预测分类标签. 这样的分类器可以用于一组同样表现良好的模型, 以便平衡它们各自的弱点</p>
-<h2 id="112_1">1.12 多类和多标签算法</h2></div>
+<p>VotingClassifier (投票分类器)的原理是结合了多个不同的机器学习分类器, 并且采用多数表决(majority vote)或者平均预测概率(软投票)的方式来预测分类标签. 这样的分类器可以用于一组同样表现良好的模型, 以便平衡它们各自的弱点</p>
+<h2 id="112_1">1.12 多类和多标签算法</h2>
+<ul>
+<li>1 vs 1<ul>
+<li>sklearn.svm.NuSVC</li>
+<li>sklearn.svm.SVC</li>
+<li>sklearn.gaussian_process.GaussianProcessClassifier </li>
+</ul>
+</li>
+<li>1 vs many<ul>
+<li>GradientBoostingClassifier</li>
+<li>GaussianProcessClassifier</li>
+<li>LogisticRegression</li>
+<li>PassiveAggressiveClassifier</li>
+<li>Perceptron</li>
+</ul>
+</li>
+</ul>
+<h2 id="_5">特征选择</h2>
+<ul>
+<li>VarianceThreshold 是特征选择的一个简单基本方法，它会移除所有那些方差不满足一些阈值的特征, 默认情况下，它将会移除所有的零方差特征，即那些在所有的样本上的取值均不变的特征</li>
+<li>单变量的特征选择是通过基于单变量的统计测试来选择最好的特征。它可以当做是评估器的预处理步骤</li>
+<li>可以通过 统计测试 进行特征选择<ul>
+<li>将得分函数作为输入，返回单变量的得分和 p 值 （或者仅仅是 SelectKBest 和 SelectPercentile 的分数）:<ul>
+<li>对于回归: f_regression , mutual_info_regression</li>
+<li>对于分类: chi2 , f_classif , mutual_info_classif</li>
+</ul>
+</li>
+<li>这些基于 F-test 的方法计算两个随机变量之间的线性相关程度</li>
+<li>mutual information methods（互信息）能够计算任何种类的统计相关性，但是作为非参数的方法，互信息需要更多的样本来进行准确的估计</li>
+</ul>
+</li>
+<li>不要使用一个回归评分函数来处理分类问题</li>
+<li>递归式特征消除</li>
+<li>recursive feature elimination ( RFE ) 通过考虑越来越小的特征集合来递归的选择特征</li>
+<li>Linear models 使用 L1 正则化的线性模型会得到稀疏解</li>
+<li>基于 Tree（树）的特征选取 可以用来计算特征的重要性，然后可以消除不相关的特征</li>
+<li>特征选择通常在实际的学习之前用来做预处理。在 scikit-learn 中推荐的方式是使用 sklearn.pipeline.Pipeline</li>
+</ul>
+<h2 id="_6">概率校准</h2>
+<h2 id="_7">神经网络</h2></div>
         </div>
 
         <footer class="col-md-12">
