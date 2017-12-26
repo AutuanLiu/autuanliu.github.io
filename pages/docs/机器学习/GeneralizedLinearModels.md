@@ -360,9 +360,8 @@ dtrain = xgb.DMatrix(data, label=label, missing = -999.0)
 
     ```python
     param['eval_metric'] = ['auc', 'ams@0'] 
-    # alternativly:
-    # plst = param.items()
-    # plst += [('eval_metric', 'ams@0')]
+    plst = param.items()
+    plst += [('eval_metric', 'ams@0')]
     ```
 
     * 指定 模式
