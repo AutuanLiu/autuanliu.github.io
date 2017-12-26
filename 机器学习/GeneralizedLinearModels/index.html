@@ -590,48 +590,52 @@ dtrain.save_binary(&quot;train.buffer&quot;)
 </code></pre>
 
 <ul>
-<li>
-<p>xgboost 使用 字典 来保存参数</p>
-<ul>
+<li>xgboost 使用 字典 来保存参数<ul>
 <li>booster 参数</li>
 </ul>
-<p><code>python
-param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
+</li>
+</ul>
+<pre><code class="python">param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
 param['nthread'] = 4
-param['eval_metric'] = 'auc'</code></p>
+param['eval_metric'] = 'auc'
+</code></pre>
+
 <ul>
 <li>可以指定多个评估指标</li>
 </ul>
-<p><code>python
-param['eval_metric'] = ['auc', 'ams@0'] 
+<pre><code class="python">param['eval_metric'] = ['auc', 'ams@0'] 
 plst = param.items()
-plst += [('eval_metric', 'ams@0')]</code></p>
+plst += [('eval_metric', 'ams@0')]
+</code></pre>
+
 <ul>
 <li>指定 模式</li>
 </ul>
-<p><code>python
-evallist  = [(dtest,'eval'), (dtrain,'train')]</code></p>
+<pre><code class="python">evallist  = [(dtest,'eval'), (dtrain,'train')]
+</code></pre>
+
 <ul>
 <li>训练模型</li>
 </ul>
-<p><code>python
-num_round = 10
-bst = xgb.train( plst, dtrain, num_round, evallist )</code></p>
+<pre><code class="python">num_round = 10
+bst = xgb.train( plst, dtrain, num_round, evallist )
+</code></pre>
+
 <ul>
 <li>保存</li>
 </ul>
-<p><code>python
-bst.save_model('0001.model')</code></p>
+<pre><code class="python">bst.save_model('0001.model')
+</code></pre>
+
 <ul>
 <li>加载和转存</li>
 </ul>
-<p><code>python
-dump_model()
-load_model()</code></p>
-</li>
-<li>
-<p>如果您有一个验证集, 你可以使用提前停止找到最佳数量的 boosting rounds（梯度次数）. 提前停止至少需要一个 evals 集合. 如果有多个, 它将使用最后一个.</p>
-</li>
+<pre><code class="python">dump_model()
+load_model()
+</code></pre>
+
+<ul>
+<li>如果您有一个验证集, 你可以使用提前停止找到最佳数量的 boosting rounds（梯度次数）. 提前停止至少需要一个 evals 集合. 如果有多个, 它将使用最后一个.</li>
 </ul>
 <pre><code class="python">train(..., evals=evals, early_stopping_rounds=10)
 </code></pre>
