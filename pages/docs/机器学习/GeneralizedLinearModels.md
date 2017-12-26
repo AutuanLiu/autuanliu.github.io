@@ -350,45 +350,36 @@ dtrain = xgb.DMatrix(data, label=label, missing = -999.0)
 * xgboost 使用 字典 来保存参数
     * booster 参数
 
-    ```python
-    param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
-    param['nthread'] = 4
-    param['eval_metric'] = 'auc'
-    ```
+```python
+param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
+param['nthread'] = 4
+param['eval_metric'] = 'auc'
+```
     
-    * 可以指定多个评估指标
-
-    ```python
-    param['eval_metric'] = ['auc', 'ams@0'] 
-    plst = param.items()
-    plst += [('eval_metric', 'ams@0')]
-    ```
-
-    * 指定 模式
-
-    ```python
-    evallist  = [(dtest,'eval'), (dtrain,'train')]
-    ```
-
-    * 训练模型
-
-    ```python
-    num_round = 10
-    bst = xgb.train( plst, dtrain, num_round, evallist )
-    ```
-
-    * 保存
-
-    ```python
-    bst.save_model('0001.model')
-    ```
-
-    * 加载和转存
-
-    ```python
-    dump_model()
-    load_model()
-    ```
+* 可以指定多个评估指标
+```python
+param['eval_metric'] = ['auc', 'ams@0'] 
+plst = param.items()
+plst += [('eval_metric', 'ams@0')]
+```
+* 指定 模式
+```python
+evallist  = [(dtest,'eval'), (dtrain,'train')]
+```
+* 训练模型
+```python
+num_round = 10
+bst = xgb.train( plst, dtrain, num_round, evallist )
+```
+* 保存
+```python
+bst.save_model('0001.model')
+```
+* 加载和转存
+```python
+dump_model()
+load_model()
+```
 
 * 如果您有一个验证集, 你可以使用提前停止找到最佳数量的 boosting rounds（梯度次数）. 提前停止至少需要一个 evals 集合. 如果有多个, 它将使用最后一个.
 
