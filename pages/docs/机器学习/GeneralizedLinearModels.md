@@ -349,15 +349,17 @@ dtrain = xgb.DMatrix(data, label=label, missing = -999.0)
 
 * xgboost 使用 字典 来保存参数
     * booster 参数
+
     ```python
     param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
     param['nthread'] = 4
     param['eval_metric'] = 'auc'
     ```
+    
     * 可以指定多个评估指标
+
     ```python
     param['eval_metric'] = ['auc', 'ams@0'] 
-
     # alternativly:
     # plst = param.items()
     # plst += [('eval_metric', 'ams@0')]

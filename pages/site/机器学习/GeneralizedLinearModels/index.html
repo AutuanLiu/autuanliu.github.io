@@ -598,15 +598,17 @@ dtrain.save_binary(&quot;train.buffer&quot;)
 <li>
 <p>xgboost 使用 字典 来保存参数</p>
 <ul>
-<li>booster 参数
-<code>python
+<li>booster 参数</li>
+</ul>
+<p><code>python
 param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
 param['nthread'] = 4
-param['eval_metric'] = 'auc'</code></li>
-<li>可以指定多个评估指标
-```python
-param['eval_metric'] = ['auc', 'ams@0'] </li>
+param['eval_metric'] = 'auc'</code></p>
+<ul>
+<li>可以指定多个评估指标</li>
 </ul>
+<p>```python
+param['eval_metric'] = ['auc', 'ams@0'] </p>
 <h1 id="alternativly">alternativly:</h1>
 <h1 id="plst-paramitems">plst = param.items()</h1>
 <h1 id="plst-eval_metric-ams0">plst += [('eval_metric', 'ams@0')]</h1>
