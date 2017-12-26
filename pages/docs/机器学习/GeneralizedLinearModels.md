@@ -297,7 +297,7 @@ Gradient Tree Boosting 或梯度提升回归树(GBRT)是对于任意的可微损
 
 在拟合一定数量的弱分类器时, 参数 learning_rate 和参数 n_estimators 之间有很强的制约关系. 较小的 learning_rate 需要大量的弱分类器才能保证训练误差的不变.经验表明数值较小的 learning_rate 将会得到更好的测试误差. 
 
-### XGBoost
+## XGBoost
 
 * XGBoost 是 Extreme Gradient Boosting 的缩写
 * XGBoost 用于监督学习问题
@@ -349,48 +349,45 @@ dtrain = xgb.DMatrix(data, label=label, missing = -999.0)
 
 * xgboost 使用 字典 来保存参数
     * booster 参数
-
-```python
-param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
-param['nthread'] = 4
-param['eval_metric'] = 'auc'
-```
-
+    ```python
+    param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic' }
+    param['nthread'] = 4
+    param['eval_metric'] = 'auc'
+    ```
     * 可以指定多个评估指标
+    ```python
+    param['eval_metric'] = ['auc', 'ams@0'] 
 
-```python
-param['eval_metric'] = ['auc', 'ams@0'] 
-
-# alternativly:
-# plst = param.items()
-# plst += [('eval_metric', 'ams@0')]
-```
+    # alternativly:
+    # plst = param.items()
+    # plst += [('eval_metric', 'ams@0')]
+    ```
 
     * 指定 模式
 
-```python
-evallist  = [(dtest,'eval'), (dtrain,'train')]
-```
+    ```python
+    evallist  = [(dtest,'eval'), (dtrain,'train')]
+    ```
 
     * 训练模型
 
-```python
-num_round = 10
-bst = xgb.train( plst, dtrain, num_round, evallist )
-```
+    ```python
+    num_round = 10
+    bst = xgb.train( plst, dtrain, num_round, evallist )
+    ```
 
     * 保存
 
-```python
-bst.save_model('0001.model')
-```
+    ```python
+    bst.save_model('0001.model')
+    ```
 
     * 加载和转存
 
-```python
-dump_model()
-load_model()
-```
+    ```python
+    dump_model()
+    load_model()
+    ```
 
 * 如果您有一个验证集, 你可以使用提前停止找到最佳数量的 boosting rounds（梯度次数）. 提前停止至少需要一个 evals 集合. 如果有多个, 它将使用最后一个.
 
