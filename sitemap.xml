@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://autuanliu.github.io/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,31 +13,31 @@
         
     <url>
      <loc>https://autuanliu.github.io/数据科学/ExploratoryDataAnalysis/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/数据科学/visualization/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/数据科学/imbalance/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/数据科学/path/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/数据科学/docker/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -47,31 +47,37 @@
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/GeneralizedLinearModels/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://autuanliu.github.io/机器学习/imblearnDoc/</loc>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/unsupervised/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/model/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/sklearnStruct/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/机器学习/content/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -81,13 +87,13 @@
         
     <url>
      <loc>https://autuanliu.github.io/深度学习/CNN/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/深度学习/RNN/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -97,7 +103,7 @@
         
     <url>
      <loc>https://autuanliu.github.io/Blog/Bayesian/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -107,13 +113,13 @@
         
     <url>
      <loc>https://autuanliu.github.io/about/aboutme/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://autuanliu.github.io/about/license/</loc>
-     <lastmod>2017-12-26</lastmod>
+     <lastmod>2017-12-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
