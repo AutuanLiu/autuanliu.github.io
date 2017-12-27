@@ -30,6 +30,7 @@ pages:
         - Docker基础: 数据科学/docker.md
     - 机器学习:
         - 广义线性模型(GLM): 机器学习/GeneralizedLinearModels.md
+        - 不平衡类学习: 机器学习/imblearnDoc.md
         - 无监督学习: 机器学习/unsupervised.md
         - 模型选择: 机器学习/model.md
         - SkLearn的结构: 机器学习/sklearnStruct.md

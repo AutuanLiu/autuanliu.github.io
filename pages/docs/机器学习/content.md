@@ -20,6 +20,7 @@ email: autuanliu@163.com
 13. [Keras教程：Python入门深度学习入门指南](https://elitedatascience.com/keras-tutorial-deep-learning-in-python)
 14. [数据维数降低的七种技术](https://www.kdnuggets.com/2015/05/7-methods-data-dimensionality-reduction.html)
 15. [斯坦福CS231n 2017最新课程：李飞飞详解深度学习的框架实现与对比 | 机器之心](https://www.jiqizhixin.com/articles/2017-06-19-7)
+16. [Iimbalanced-learn documentation](http://contrib.scikit-learn.org/imbalanced-learn/stable/install.html)
 
 ## Docker 深度机器学习
 1. [Deep Learning with Docker - Affine Layer](https://affinelayer.com/docker/)
@@ -89,4 +90,3 @@ email: autuanliu@163.com
 ## Kaggle
 1. [otto](https://www.kaggle.com/c/otto-group-product-classification-challenge)
 2. [house price](https://mp.weixin.qq.com/s/V7eYqbyT8IGNHVchvQaouw)
-3. 

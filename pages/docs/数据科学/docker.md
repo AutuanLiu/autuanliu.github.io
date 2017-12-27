@@ -57,13 +57,13 @@ sudo usermod -aG docker $USER
 
 * 您可以添加"https://registry.docker-cn.com"到registry-mirrors数组中/etc/docker/daemon.json 以默认从China注册表镜像中拉取。
 
-    ```
-    {
-     "registry-mirrors": [
-        "https://registry.docker-cn.com"
-        ]
-    }
-    ```
+```
+{
+ "registry-mirrors": [
+    "https://registry.docker-cn.com"
+    ]
+}
+```
 
 [Registry as a pull through cache | Docker Documentation](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
@@ -148,13 +148,13 @@ bash 容器内命令
 6. `docker commit` 可以降容器的**存储层保存下来成为镜像，以后运行这个新镜像的时候，就会拥有原有镜像的文件变化** 
     1. docker commit [选项] <容器ID或者容器名> [<仓库名>[:<tag>]]
     2. 将容器保存为镜像
-    ```
-    docker commit \
-    --author "autuanliu <autuanliu@163.com>" \
-    --message "fix " \ 可以不写
-    webserver \  容器名字
-    nginx:v2 指定仓库名:tag
-    ```
+```
+docker commit \
+--author "autuanliu <autuanliu@163.com>" \
+--message "fix " \ 可以不写
+webserver \  容器名字
+nginx:v2 指定仓库名:tag
+```
 8. **这里一定要记得写一个++保存脚本++啊！！！很容易忘记啊，直接就关闭了，然后什么也没有了啊**
 9. `Docker history 仓库名:tag` 查看历史 
 
@@ -219,7 +219,10 @@ bash 容器内命令
 
 * 也可以通过指定 URL 或者某个目录来导入，例如
 
-```$ docker import http://example.com/exampleimage.tgz example/imagerepo```
+```
+docker import http://example.com/exampleimage.tgz example/imagerepo
+```
+
 ```
 $ docker container export
 $ docker image import
@@ -254,40 +257,49 @@ $ docker image import
 
 ### 创建一个数据卷
 
-```$ docker volume create my-vol```
+```
+$ docker volume create my-vol
+```
 
 * 查看所有的数据卷
 
-```$ docker volume ls```
+```
+$ docker volume ls
+```
 
 * 查看指定数据卷的信息
 
-```docker volume inspect my-vol```
+```
+docker volume inspect my-vol
+```
 
 ### 创建一个指定位置的数据卷
 
 ```
 docker volume create --name sharef --opt type=none --opt device=~/home/autuanliu/sharef --opt o=bind
-
 ```
 
 
 ### 启动一个挂载数据卷的容器
 
 * 在用 docker run 命令的时候，使用 --mount 标记来将数据卷挂载到容器里。在一次 docker run 中可以挂载多个数据卷
-    ```
-    docker run -d -P \
-    --name web \ 容器名
-    --mount source=my-vol,target=/webapp \  加载一个数据卷到容器的 /webapp 目录
-    training/webapp \  镜像名
-    python app.py \ 在 bash 执行命令
-    ```
+```
+docker run -d -P \
+--name web \ 容器名
+--mount source=my-vol,target=/webapp \  加载一个数据卷到容器的 /webapp 目录
+training/webapp \  镜像名
+python app.py \ 在 bash 执行命令
+```
 * 查看数据卷的具体信息
 
-    ```$ docker inspect web```
+```
+$ docker inspect web
+```
 ### 删除数据卷
 
-```$ docker volume rm my-vol```
+```
+$ docker volume rm my-vol
+```
 
 数据卷是被设计用来**持久化数据**的，++它的生命周期独立于容器++，Docker 不会在容器被删除后自动删除数据卷，并且也不存在垃圾回收这样的机制来处理没有任何容器引用的数据卷。
 
@@ -295,7 +307,9 @@ docker volume create --name sharef --opt type=none --opt device=~/home/autuanliu
 
 * 无主的数据卷可能会占据很多空间，要清理请使用以下命令
 
-    ```docker volume prune```
+```
+docker volume prune
+```
 
 ### 挂载一个主机目录作为数据卷
 
@@ -313,7 +327,9 @@ python app.py
 
 Docker 挂载主机目录的默认权限是读写，用户也可以通过增加 readonly 指定为只读
 
-```--mount type=bind,source=/src/webapp,target=/opt/webapp,readonly ```
+```
+--mount type=bind,source=/src/webapp,target=/opt/webapp,readonly 
+```
 
 ### 挂载一个本地主机文件作为数据卷
 
@@ -363,7 +379,9 @@ bash
     * 自定义的命名，比较好记，比如一个web应用容器我们可以给它起名叫web
     * 当要连接其他容器时候，可以作为一个有用的参考点，比如连接web容器到db容器
     * 使用 --name 标记可以为容器自定义命名。
-     ```$ docker run -d -P --name web training/webapp python app.py```
+```
+$ docker run -d -P --name web training/webapp python app.py
+```
 * 在执行 docker run 的时候如果添加 --rm 标记，则容器在终止后会立刻删除
 * --rm 和 -d 参数不能同时使用
 
@@ -373,7 +391,9 @@ bash
 
 创建一个新的 web 容器，并将它连接到 db 容器
 
-```$ docker run -d -P --name web --link db:db training/webapp python app.py```
+```
+$ docker run -d -P --name web --link db:db training/webapp python app.py
+```
 
 --link 参数的格式为 --link name:alias ，其中 name 是要链接的容器的名称， alias 是这个连接的别名
 
@@ -425,7 +445,9 @@ RUN 指令是用来执行命令行命令的。由于命令行的强大能力， 
 * 格式
     * shell 格式： RUN <命令> ，就像直接在命令行中输入的命令一样
     
-    ```RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html```
+```
+RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
+```
 
     * exec 格式： RUN ["可执行文件", "参数1", "参数2"] ，这更像是函数调用中的格式
     
