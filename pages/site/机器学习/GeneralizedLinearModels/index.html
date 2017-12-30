@@ -757,7 +757,23 @@ xgb.to_graphviz(bst, num_trees=2)
 <li>特征选择通常在实际的学习之前用来做预处理。在 scikit-learn 中推荐的方式是使用 sklearn.pipeline.Pipeline</li>
 </ul>
 <h2 id="_6">概率校准</h2>
-<h2 id="_7">神经网络</h2></div>
+<p>执行分类时, 您经常希望不仅可以预测类标签, 还要获得相应标签的概率， 校准模块可以让您更好地校准给定模型的概率, 或添加对概率预测的支持，</p>
+<p>精确校准的分类器是概率分类器, 其可以将 predict_proba 方法的输出直接解释为 confidence level（置信度级别）</p>
+<p>LogisticRegression 默认情况下返回良好的校准预测, 因为它直接优化了 log-loss（对数损失）情况</p>
+<h2 id="_7">神经网络</h2>
+<p>多层感知器的优点:</p>
+<ul>
+<li>可以学习得到非线性模型。</li>
+<li>
+<p>使用<code>partial_fit</code> 可以学习得到实时模型(在线学习)
+多层感知器(MLP)的缺点:</p>
+</li>
+<li>
+<p>具有隐藏层的 MLP 具有非凸的损失函数，它有不止一个的局部最小值。 因此不同的随机权重初始化会导致不同的验证集准确率。</p>
+</li>
+<li>MLP 需要调试一些超参数，例如隐藏层神经元的数量、层数和迭代轮数。</li>
+<li>MLP 对特征归一化很敏感.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
