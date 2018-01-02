@@ -241,7 +241,28 @@
 <li>度量聚类算法的性能不是简单的统计错误的数量或计算监督分类算法中的 precision (准确率)和 recall (召回率)</li>
 <li>Biclustering 可以使用 sklearn.cluster.bicluster 模块. Biclustering 算法对数据矩阵的行列同时进行聚类. 同时对行列进行聚类称之为 biclusters. 每一次聚类都会通过原始数据矩阵的一些属性确定一个子矩阵</li>
 </ul>
-<h2 id="_5">矩阵分解</h2></div>
+<h2 id="_5">矩阵分解</h2>
+<ul>
+<li>可选参数 whiten=True 使得可以将数据投影到奇异（singular）空间上，同时将每个成分缩放到单位方差</li>
+<li>PCA 对象非常有用, 但对大型数据集有一定的限制。 最大的限制是 PCA 仅支持批处理，这意味着所有要处理的数据必须适合主内存。 IncrementalPCA 对象使用不同的处理形式使之允许部分计算， 这一形式几乎和 PCA 以小型批处理方式处理数据的方法完全匹配</li>
+<li>IncrementalPCA 仅存储成分和噪声方差的估计值，并按顺序递增地更新解释方差比</li>
+<li>KernelPCA 是 PCA 的扩展，通过使用核方法实现非线性降维（dimensionality reduction）它具有许多应用，包括去噪, 压缩和结构化预测（ structured prediction ） (kernel dependency estimation（内核依赖估计）)。</li>
+<li>SparsePCA 是 PCA 的一个变体，目的是提取能最好地重建数据的稀疏组分集合</li>
+<li>小批量稀疏 PCA ( MiniBatchSparsePCA ) 是一个 SparsePCA 的变种，它速度更快但准确度有所降低。对于给定的迭代次数，通过迭代该组特征的小块来达到速度的增加</li>
+<li>Principal component analysis（主成分分析） (PCA) 的缺点在于，通过该方法提取的成分具有唯一的密度表达式，即当表示为原始变量的线性组合时，它们具有非零系数，使之难以解释。在许多情况下，真正的基础组件可以更自然地想象为稀疏向量; 例如在面部识别中，每个组件可能自然地映射到面部的某个部分</li>
+<li>TruncatedSVD 实现了一个奇异值分解（SVD）的变体，它只计算 k 个最大的奇异值，其中 k 是用户指定的参数</li>
+<li>SparseCoder 对象是一个估计器 （estimator），可以用来将信号转换成一个固定的预计算的词典内原子（atoms）的稀疏线性组合</li>
+<li>词典学习( DictionaryLearning ) 是一个矩阵因式分解问题，相当于找到一个在拟合数据的稀疏编码中表现良好的（通常是过完备的（overcomplete））词典</li>
+<li>词典学习是通过交替更新稀疏编码来解决的优化问题</li>
+<li>因子分析 无监督学习下的降维</li>
+<li>独立分量分析将多变量信号分解为独立性最强的加性子组件。ICA 通常不用于降低维度，而是用于分离叠加信号。由于 ICA 模型不包括噪声项，因此要使模型正确，必须使用白化。 这可以在内部调节白化参数或手动使用 PCA 的一种变体</li>
+<li>ICA 通常用于分离混合信号</li>
+<li>NMF 是在数据和分量是非负情况下的另一种降维方法。 在数据矩阵不包含负值的情况下，可以插入 NMF 而不是 PCA 或其变体</li>
+<li>NMF 实现了非负双奇异值分解方法</li>
+<li>隐 Dirichlet 分配是离散数据集（如文本语料库）的集合的生成概率模型。 它也是一个主题模型，用于从文档集合中发现抽象主题</li>
+<li>scikit-learn项目提供了一套可用于新奇或异常值检测的机器学习工具。 该策略是以无监督的方式学习数据中的对象来实现的</li>
+<li>密度估计在无监督学习，特征工程和数据建模之间划分了界线。一些最流行和最有用的密度估计方法是混合模型，如高斯混合( sklearn.mixture.GaussianMixture ), 和基于邻近的方法( sklearn.neighbors.KernelDensity )，如核密度估计</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
