@@ -42,8 +42,8 @@ pages:
         - 贝叶斯思想: Blog/Bayesian.md
         - Python 随笔: Blog/pythonL.md
     - About:
-        - AboutMe: about/aboutme.md
-        - License: about/license.md
+        - AboutMe: About/aboutme.md
+        - License: About/license.md
 
 copyright: Copyright &copy; 2017 <a href="https://autuanliu.github.io">AutuanLiu</a>
 google_analytics: ['UA-27795084-5', 'mkdocs.org']
