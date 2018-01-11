@@ -841,27 +841,27 @@
             "title": "\u751f\u6210\u5668"
         },
         {
-            "location": "/about/aboutme/",
+            "location": "/About/aboutme/",
             "text": "About ME\n\n\nInfo\n\n\n\n\n\n\n\n\ntitle\n\n\ninfo\n\n\n\n\n\n\n\n\n\n\n\u90ae\u7bb1\n\n\nautuanliu@163.com\n\n\n\n\n\n\nGitHub\n\n\nhttps://github.com/AutuanLiu\n\n\n\n\n\n\n\u4e2a\u4eba\u4e3b\u9875\n\n\nhttps://autuanliu.github.io\n\n\n\n\n\n\n\u5b66\u6821\n\n\n\u4e1c\u5357\u5927\u5b66\n\n\n\n\n\n\n\u65b9\u5411\n\n\n\u6570\u636e\u79d1\u5b66\n\n\n\n\n\n\n\u65b9\u5411\n\n\n\u673a\u5668\u5b66\u4e60\n\n\n\n\n\n\n\u65b9\u5411\n\n\n\u6df1\u5ea6\u5b66\u4e60\n\n\n\n\n\n\n\u65b9\u5411\n\n\n\u533b\u5b66\u56fe\u50cf\n\n\n\n\n\n\n\n\nMotto\n\n\n\n\n\u5b9d\u5251\u950b\u4ece\u78e8\u783a\u51fa, \u6885\u82b1\u9999\u81ea\u82e6\u5bd2\u6765\n\n\n\n\n2017/12/25",
             "title": "AboutMe"
         },
         {
-            "location": "/about/aboutme/#about-me",
+            "location": "/About/aboutme/#about-me",
             "text": "",
             "title": "About ME"
         },
         {
-            "location": "/about/aboutme/#info",
+            "location": "/About/aboutme/#info",
             "text": "title  info      \u90ae\u7bb1  autuanliu@163.com    GitHub  https://github.com/AutuanLiu    \u4e2a\u4eba\u4e3b\u9875  https://autuanliu.github.io    \u5b66\u6821  \u4e1c\u5357\u5927\u5b66    \u65b9\u5411  \u6570\u636e\u79d1\u5b66    \u65b9\u5411  \u673a\u5668\u5b66\u4e60    \u65b9\u5411  \u6df1\u5ea6\u5b66\u4e60    \u65b9\u5411  \u533b\u5b66\u56fe\u50cf",
             "title": "Info"
         },
         {
-            "location": "/about/aboutme/#motto",
+            "location": "/About/aboutme/#motto",
             "text": "\u5b9d\u5251\u950b\u4ece\u78e8\u783a\u51fa, \u6885\u82b1\u9999\u81ea\u82e6\u5bd2\u6765   2017/12/25",
             "title": "Motto"
         },
         {
-            "location": "/about/license/",
+            "location": "/About/license/",
             "text": "MIT License\n\n\nCopyright (c) 2017 AutuanLiu\n\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
             "title": "License"
         }
