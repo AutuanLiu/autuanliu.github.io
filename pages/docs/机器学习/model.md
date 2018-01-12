@@ -130,3 +130,62 @@ for train, test in tscv.split(X):
 
 ## 超参数调整
 
+* 超参数，即不直接在估计器内学习的参数。在 scikit-learn 包中，它们作为估计器类中构造函数的参数进行传递
+* 搜索超参数空间以便获得最好 交叉验证 分数的方法是可能的而且是值得提倡的
+* 搜索包括:
+    * 估计器(回归器或分类器)
+    * 参数空间
+    * 搜寻或采样候选的方法
+    * 交叉验证方案
+    * 计分函数
+*  GridSearchCV 考虑了所有参数组合; 而 RandomizedSearchCV 可以从具有指定分布的参数空间中抽取给定数量的候选
+* 默认情况下, 参数搜索使用估计器的评分函数来评估（衡量）参数设置
+* Log loss，又被称为 logistic regression loss（logistic 回归损失）或者 cross-entropy loss（交叉熵损失） 定义在 probability estimates （概率估计)
+* 可以通过使用 Python 的内置持久化模型将训练好的模型保存在 scikit 中, 它名为 pickle
+
+## 模型持久化
+
+```python
+from sklearn.externals import joblib
+joblib.dump(clf, 'filename.pkl') 
+clf = joblib.load('filename.pkl') 
+```
+
+* sklearn 的模型通常使用 joblib 更好 
+
+## Pipeline
+
+* Pipeline 使用一系列 (key, value) 键值对来构建,其中 key 是你给这个步骤起的名字， value 是一个评估器对象
+
+```Python
+from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC
+from sklearn.decomposition import PCA
+estimators = [('reduce_dim', PCA()), ('clf', SVC())]
+pipe = Pipeline(estimators)
+```
+
+* 功能函数 make_pipeline 是构建管道的缩写; 它接收多个评估器并返回一个管道，自动填充评估器名
+```python
+from sklearn.pipeline import make_pipeline
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.preprocessing import Binarizer
+make_pipeline(Binarizer(), MultinomialNB()) 
+```
+
+* 对管道调用 fit 方法的效果跟依次对每个评估器调用 fit 方法一样
+* FeatureUnion 合并了多个转换器对象形成一个新的转换器，该转换器合并了他们的输出。一个 FeatureUnion 可以接收多个转换器对象。在适配期间，每个转换器都单独的和数据适配。 对于转换数据，转换器可以并发使用，且输出的样本向量被连接成更大的向量
+* 类 DictVectorizer 可用于将标准的Python字典（dict）对象列表的要素数组转换为 scikit-learn 估计器使用的 NumPy/SciPy 表示形式
+
+## 预处理数据
+
+* 标准化，也称去均值和方差按比例缩放
+* 如果某个特征的方差比其他特征大几个数量级，那么它就会在学习算法中占据主导位置，导致学习器并不能像我们说期望的那样，从其他特征中学习
+* 一种标准化是将特征缩放到给定的最小值和最大值之间，通常在零和一之间，或者也可以将每个特征的最大绝对值转换至单位大小。可以分别使用 MinMaxScaler 和 MaxAbsScaler 实现
+* 中心化稀疏(矩阵)数据会破坏数据的稀疏结构，因此很少有一个比较明智的实现方式。但是缩放稀疏输入是有意义的，尤其是当几个特征在不同的量级范围时
+* MaxAbsScaler 以及 maxabs_scale 是专为缩放数据而设计的，并且是缩放数据的推荐方法
+* 如果你的数据包含许多异常值，使用均值和方差缩放可能并不是一个很好的选择。这种情况下，你可以使用 robust_scale 以及 RobustScaler 作为替代品。它们对你的数据的中心和范围使用更有鲁棒性的估计
+* 归一化 是 缩放单个样本以具有单位范数 的过程
+
+## 二值化
+* 特征二值化 是 将数值特征用阈值过滤得到布尔值 的过程

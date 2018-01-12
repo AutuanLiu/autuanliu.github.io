@@ -182,6 +182,8 @@
         <li class="main active"><a href="#_1">模型选择与评估</a></li>
             <li><a href="#_2">交叉验证迭代器</a></li>
             <li><a href="#_3">超参数调整</a></li>
+            <li><a href="#_4">模型持久化</a></li>
+            <li><a href="#pipeline">Pipeline</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -326,7 +328,51 @@ for train, test in tscv.split(X):
 <ul>
 <li>如果数据的顺序不是任意的（比如说，相同标签的样例连续出现），为了获得有意义的交叉验证结果，首先对其进行 打散是很有必要的. 然而，当样例不是独立同分布时打散则是不可行的</li>
 </ul>
-<h2 id="_3">超参数调整</h2></div>
+<h2 id="_3">超参数调整</h2>
+<ul>
+<li>超参数，即不直接在估计器内学习的参数。在 scikit-learn 包中，它们作为估计器类中构造函数的参数进行传递</li>
+<li>搜索超参数空间以便获得最好 交叉验证 分数的方法是可能的而且是值得提倡的</li>
+<li>搜索包括:<ul>
+<li>估计器(回归器或分类器)</li>
+<li>参数空间</li>
+<li>搜寻或采样候选的方法</li>
+<li>交叉验证方案</li>
+<li>计分函数</li>
+</ul>
+</li>
+<li>GridSearchCV 考虑了所有参数组合; 而 RandomizedSearchCV 可以从具有指定分布的参数空间中抽取给定数量的候选</li>
+<li>默认情况下, 参数搜索使用估计器的评分函数来评估（衡量）参数设置</li>
+<li>Log loss，又被称为 logistic regression loss（logistic 回归损失）或者 cross-entropy loss（交叉熵损失） 定义在 probability estimates （概率估计)</li>
+<li>可以通过使用 Python 的内置持久化模型将训练好的模型保存在 scikit 中, 它名为 pickle</li>
+</ul>
+<h2 id="_4">模型持久化</h2>
+<pre><code class="python">from sklearn.externals import joblib
+joblib.dump(clf, 'filename.pkl') 
+clf = joblib.load('filename.pkl') 
+</code></pre>
+
+<ul>
+<li>sklearn 的模型通常使用 joblib 更好 </li>
+</ul>
+<h2 id="pipeline">Pipeline</h2>
+<ul>
+<li>Pipeline 使用一系列 (key, value) 键值对来构建,其中 key 是你给这个步骤起的名字， value 是一个评估器对象</li>
+</ul>
+<pre><code class="Python">from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC
+from sklearn.decomposition import PCA
+estimators = [('reduce_dim', PCA()), ('clf', SVC())]
+pipe = Pipeline(estimators)
+</code></pre>
+
+<ul>
+<li>功能函数 make_pipeline 是构建管道的缩写; 它接收多个评估器并返回一个管道，自动填充评估器名</li>
+</ul>
+<pre><code class="python">from sklearn.pipeline import make_pipeline
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.preprocessing import Binarizer
+make_pipeline(Binarizer(), MultinomialNB()) 
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
