@@ -189,3 +189,35 @@ make_pipeline(Binarizer(), MultinomialNB())
 
 ## 二值化
 * 特征二值化 是 将数值特征用阈值过滤得到布尔值 的过程
+* 分类特征编码
+* 一种将分类特征转换为能够被scikit-learn中模型使用的编码是one-of-K或one-hot编码，在 OneHotEncoder 中实现。这个类使用 m 个可能值转换为 m 值化特征，将分类特征的每个元素转化为一个值
+* 处理缺失数值的一个更好的策略就是从已有的数据推断出缺失的数值
+
+## 缺失值插补
+
+```python
+import numpy as np
+from sklearn.preprocessing import Imputer
+imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+imp.fit([[1, 2], [np.nan, 3], [7, 6]])
+X = [[np.nan, 2], [6, np.nan], [7, 6]]
+print(imp.transform(X))   
+```
+
+* 在机器学习中，通过增加一些输入数据的非线性特征来增加模型的复杂度通常是有效的。一个简单通用的办法是使用多项式特征，这可以获得特征的更高维度和互相间关系的项。这在 PolynomialFeatures 中实现
+
+```python
+import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+X = np.arange(6).reshape(3, 2)
+poly = PolynomialFeatures(2)
+poly.fit_transform(X)  
+```
+
+## 无监督降维
+
+1. PCA: 主成份分析
+2. 随机投影
+3. 特征聚集
+
+* sklearn.random_projection 模块实现了一个简单且高效率的计算方式来减少数据维度，通过牺牲一定的精度（作为附加变量）来加速处理时间及更小的模型
