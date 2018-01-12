@@ -221,3 +221,25 @@ poly.fit_transform(X)
 3. 特征聚集
 
 * sklearn.random_projection 模块实现了一个简单且高效率的计算方式来减少数据维度，通过牺牲一定的精度（作为附加变量）来加速处理时间及更小的模型
+
+## 标签二值化
+```python
+from sklearn import preprocessing
+lb = preprocessing.LabelBinarizer()
+lb.fit([1, 2, 6, 4, 2])
+lb.transform([1, 6])
+```
+## 标签编码
+* LabelEncoder 是一个可以用来将标签规范化的工具类，它可以将标签的编码值范围限定在[0,n_classes-1]
+```python
+from sklearn import preprocessing
+le = preprocessing.LabelEncoder()
+le.fit([1, 2, 2, 6])
+le.transform([1, 1, 2, 6])
+le.inverse_transform([0, 0, 1, 2])
+```
+## 数据工具
+
+* make_blobs 和 make_classification 通过分配每个类的一个或多个正态分布的点的群集创建的多类数据集。 make_blobs 对于中心和各簇的标准偏差提供了更好的控制，可用于演示聚类
+*  make_classification 专门通过引入相关的，冗余的和未知的噪音特征；将高斯集群的每类复杂化；在特征空间上进行线性变换
+* make_regression 产生的回归目标作为一个可选择的稀疏线性组合的具有噪声的随机的特征

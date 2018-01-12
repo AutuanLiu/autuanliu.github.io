@@ -45,7 +45,7 @@ pages:
         - AboutMe: About/aboutme.md
         - License: About/license.md
 
-copyright: Copyright &copy; 2017 <a href="https://autuanliu.github.io">AutuanLiu</a>
+copyright: Copyright &copy; 2017-2018 <a href="https://autuanliu.github.io">AutuanLiu</a>
 google_analytics: ['UA-27795084-5', 'mkdocs.org']
 
 plugins:
