@@ -188,6 +188,9 @@
             <li><a href="#_6">二值化</a></li>
             <li><a href="#_7">缺失值插补</a></li>
             <li><a href="#_8">无监督降维</a></li>
+            <li><a href="#_9">标签二值化</a></li>
+            <li><a href="#_10">标签编码</a></li>
+            <li><a href="#_11">数据工具</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -429,12 +432,36 @@ poly.fit_transform(X)
 <li>
 <p>sklearn.random_projection 模块实现了一个简单且高效率的计算方式来减少数据维度，通过牺牲一定的精度（作为附加变量）来加速处理时间及更小的模型</p>
 </li>
-</ol></div>
+</ol>
+<h2 id="_9">标签二值化</h2>
+<pre><code class="python">from sklearn import preprocessing
+lb = preprocessing.LabelBinarizer()
+lb.fit([1, 2, 6, 4, 2])
+lb.transform([1, 6])
+</code></pre>
+
+<h2 id="_10">标签编码</h2>
+<ul>
+<li>LabelEncoder 是一个可以用来将标签规范化的工具类，它可以将标签的编码值范围限定在[0,n_classes-1]</li>
+</ul>
+<pre><code class="python">from sklearn import preprocessing
+le = preprocessing.LabelEncoder()
+le.fit([1, 2, 2, 6])
+le.transform([1, 1, 2, 6])
+le.inverse_transform([0, 0, 1, 2])
+</code></pre>
+
+<h2 id="_11">数据工具</h2>
+<ul>
+<li>make_blobs 和 make_classification 通过分配每个类的一个或多个正态分布的点的群集创建的多类数据集。 make_blobs 对于中心和各簇的标准偏差提供了更好的控制，可用于演示聚类</li>
+<li>make_classification 专门通过引入相关的，冗余的和未知的噪音特征；将高斯集群的每类复杂化；在特征空间上进行线性变换</li>
+<li>make_regression 产生的回归目标作为一个可选择的稀疏线性组合的具有噪声的随机的特征</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
             <hr>
-                <p>Copyright &copy; 2017 <a href="https://autuanliu.github.io">AutuanLiu</a></p>
+                <p>Copyright &copy; 2017-2018 <a href="https://autuanliu.github.io">AutuanLiu</a></p>
             <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>var base_url = '../..';</script>
