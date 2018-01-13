@@ -38,6 +38,7 @@ pages:
     - 深度学习:
         - CNN: 深度学习/CNN.md
         - RNN: 深度学习/RNN.md
+        - TensorFlow: 深度学习/tensorflow.md
     - Blog:
         - 贝叶斯思想: Blog/Bayesian.md
         - Python 随笔: Blog/pythonL.md
