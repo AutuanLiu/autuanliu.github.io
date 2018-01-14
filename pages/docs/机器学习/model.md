@@ -241,5 +241,5 @@ le.inverse_transform([0, 0, 1, 2])
 ## 数据工具
 
 * make_blobs 和 make_classification 通过分配每个类的一个或多个正态分布的点的群集创建的多类数据集。 make_blobs 对于中心和各簇的标准偏差提供了更好的控制，可用于演示聚类
-*  make_classification 专门通过引入相关的，冗余的和未知的噪音特征；将高斯集群的每类复杂化；在特征空间上进行线性变换
+* make_classification 专门通过引入相关的，冗余的和未知的噪音特征；将高斯集群的每类复杂化；在特征空间上进行线性变换
 * make_regression 产生的回归目标作为一个可选择的稀疏线性组合的具有噪声的随机的特征
