@@ -184,6 +184,9 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#tensorflow">TensorFlow 基础</a></li>
+            <li><a href="#_1">计算图</a></li>
+            <li><a href="#fetch">fetch</a></li>
+            <li><a href="#feed">feed</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -196,8 +199,102 @@
 <li>使用 tensor 表示数据.</li>
 <li>通过 变量 (Variable) 维护状态.</li>
 <li>使用 feed 和 fetch 可以为任意的操作(arbitrary operation) 赋值或者从其中获取数据</li>
+<li>每个 Tensor 是一个类型化的多维数组</li>
+<li>在 Python 语言中, 返回的 tensor 是 numpy ndarray 对象</li>
 </ul>
 </li>
+</ul>
+<h2 id="_1">计算图</h2>
+<ul>
+<li>TensorFlow 程序通常被组织成一个构建阶段和一个执行阶段. 在构建阶段, op 的执行步骤 被描述成一个图. 在执行阶段, 使用会话执行执行图中的 op</li>
+<li>TensorFlow Python 库有一个默认图 (default graph), op 构造器可以为其增加节点. 这个默认图对 许多程序来说已经足够用</li>
+<li>Session 对象在使用完后需要关闭以释放资源. 除了显式调用 close 外, 也可以使用 "with" 代码块 来自动完成关闭动作, 所以 with 的方式是更加合理的</li>
+</ul>
+<pre><code class="python">sess.close()
+with tf.Session() as sess:
+    pass
+</code></pre>
+
+<ul>
+<li>with...Device 语句用来指派特定的 CPU 或 GPU 执行操作:</li>
+</ul>
+<pre><code class="python">with tf.Session() as sess:
+    with tf.device(&quot;/gpu:1&quot;):
+</code></pre>
+
+<ul>
+<li>
+<p>目前支持的设备包括:</p>
+<ul>
+<li>"/cpu:0" : 机器的 CPU.</li>
+<li>"/gpu:0" : 机器的第一个 GPU, 如果有的话.</li>
+<li>"/gpu:1" : 机器的第二个 GPU, 以此类推</li>
+</ul>
+</li>
+<li>
+<p>为了便于使用诸如 IPython 之类的 <strong>Python 交互环境, 可以使用 InteractiveSession 代替 Session 类</strong>, 使用Tensor.eval() 和 Operation.run() 方法代替 Session.run() . 这样可以避免使用一个变量来持有会话</p>
+</li>
+</ul>
+<pre><code class="python">sess = tf.InteractiveSession()
+x = tf.Variable([1.0, 2.0])
+a = tf.constant([3.0, 3.0])
+# 使用初始化器 initializer op 的 run() 方法初始化 'x'
+x.initializer.run()
+# 增加一个减法 sub op, 从 'x' 减去 'a'. 运行减法 op, 输出结果
+sub = tf.sub(x, a)
+print(sub.eval())
+</code></pre>
+
+<ul>
+<li>在调用 run() 执行表达式之前, 并不会真正执行操作</li>
+</ul>
+<h2 id="fetch">fetch</h2>
+<ul>
+<li>为了取回操作的输出内容, 可以在使用 Session 对象的 run() 调用 执行图时, 传入一些 tensor, 这些 tensor 会帮助你取回结果</li>
+</ul>
+<pre><code class="python">with tf.Session() as sess:
+    result = sess.run([mul, intermed])
+</code></pre>
+
+<h2 id="feed">feed</h2>
+<ul>
+<li>TensorFlow 还提供了 feed 机制, 该机制 可以临时替代图中的任意操作中的 tensor 可以对图中任何操作提交补丁, 直接插入一个 tensor</li>
+<li>feed 只在调用它的方法内有效, 方法结束, feed 就会消失</li>
+<li>最常见的用例是将某些特殊的操作指定为 "feed" 操作, 标记的方法是使用 tf.placeholder() 为这些操作创建占位符</li>
+</ul>
+<pre><code class="python">input1 = tf.placeholder(tf.types.float32)
+input2 = tf.placeholder(tf.types.float32)
+output = tf.mul(input1, input2)
+with tf.Session() as sess:
+    print sess.run([output], feed_dict={input1:[7.], input2:[2.]})
+</code></pre>
+
+<ul>
+<li>softmax模型可以用来给不同的对象分配概率。即使在之后，我们训练更加精细的模型时，最后一步也需要用softmax来分配概率</li>
+<li>softmax可以看成是一个激励（activation）函数或者链接（link）函数，把我们定义的线性函数的输出转换成我们想要的格式</li>
+<li>softmax：归一化 <span><span class="MathJax_Preview">exp(x)</span><script type="math/tex">exp(x)</script></span></li>
+</ul>
+<div>
+<div class="MathJax_Preview">\text{softmax}(x)=\text{normalize}(\exp(x))</div>
+<script type="math/tex; mode=display">\text{softmax}(x)=\text{normalize}(\exp(x))</script>
+</div>
+<div>
+<div class="MathJax_Preview">\text{softmax}(x)_i=\frac{\exp(x_i)}{\sum_j\exp()x_i}</div>
+<script type="math/tex; mode=display">\text{softmax}(x)_i=\frac{\exp(x_i)}{\sum_j\exp()x_i}</script>
+</div>
+<ul>
+<li>交叉熵(信息论, 可以简单理解为是测量两个概率之间距离的一个量)
+(y' 是预测值, y 是真实值)</li>
+</ul>
+<div>
+<div class="MathJax_Preview">H_{y}(y')\sum_i y_{i}\log(y'_i)</div>
+<script type="math/tex; mode=display">H_{y}(y')\sum_i y_{i}\log(y'_i)</script>
+</div>
+<ul>
+<li>tf.argmax 是一个非常有用的函数，它能给出某个tensor对象在某一维上的其数据最大值所在的索引值</li>
+<li>使用了占位符的 tensor 计算的时候必须要 feed</li>
+<li>只在feed 的时候才会使用真实值，其他的时候都要使用 占位符代替</li>
+<li>涉及到占位符的时候才需要 feed 变量 只需要 run 即可，也继自动微分部分</li>
 </ul></div>
         </div>
 
