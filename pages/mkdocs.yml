@@ -41,7 +41,8 @@ pages:
         - TensorFlow: 深度学习/tensorflow.md
     - Blog:
         - 贝叶斯思想: Blog/Bayesian.md
-        - Python 随笔: Blog/pythonL.md
+        - Python 随笔: Blog/Iterator.md
+        - matplotlib-Object-oriented: Blog/matplotlib.md
     - About:
         - AboutMe: About/aboutme.md
         - License: About/license.md
