@@ -1,5 +1,5 @@
 site_name: Amber Cottage
-site_url: https://autuanliu.github.io
+site_url: http://ambercottage.top/
 site_description: Amber Cottage, knowledge worth spreading and sharing.
 site_author: AutuanLiu
 
@@ -9,18 +9,28 @@ edit_uri: ""
 remote_name: origin
 remote_branch: master
 
-theme_dir: flatly/
+theme:
+    name: mkdocs
+    custom_dir: flatly/
+    include_sidebar: true
 
 markdown_extensions:
    # other extensions ...
    - pymdownx.arithmatex
+   - toc
+   - admonition
+
+extra_css:
+   - https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.css
 
 extra_javascript:
   # other extra java script
+  - https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.js
   - mathjax-config.js
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-pages:
+
+nav:
     - Home: index.md
     - 数据科学:
         - 探索性数据分析: 数据科学/ExploratoryDataAnalysis.md
@@ -48,7 +58,7 @@ pages:
         - AboutMe: About/aboutme.md
         - License: About/license.md
 
-copyright: Copyright &copy; 2017-2018 <a href="https://autuanliu.github.io">AutuanLiu</a>
+copyright: Copyright &copy; 2017-2018 <a href="http://ambercottage.top/">AutuanLiu</a>
 google_analytics: ['UA-27795084-5', 'mkdocs.org']
 
 plugins:
